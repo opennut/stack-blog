@@ -1,0 +1,309 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!--link rel="icon" href="../../favicon.ico"-->
+  <title>Open Nut Stack-Blog</title>
+  {% load staticfiles %}
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "bootstrap/css/docs.min.css" %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+  <!-- Custom styles for this template -->
+  <style>
+    .navbar-static-top {
+      margin-bottom: 19px;
+    }
+    .navbar-brand img{
+      height: 100%;
+    }
+
+    .dropdown.dropdown-lg .dropdown-menu {
+      margin-top: -1px;
+      padding: 6px 20px;
+    }
+    .input-group-btn .btn-group {
+      display: flex !important;
+    }
+    .btn-group .btn {
+      border-radius: 0;
+      margin-left: -1px;
+    }
+    .btn-group .btn:last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    .btn-group .form-horizontal .btn[type="submit"] {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    .form-horizontal .form-group {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .form-group .form-control:last-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    @media screen and (min-width: 768px) {
+      #adv-search {
+        width: 500px;
+        margin: 0 auto;
+      }
+      .dropdown.dropdown-lg {
+        position: static !important;
+      }
+      .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+      }
+    }
+
+    .bs-docs-footer{
+      margin-top: 30px;
+    }
+
+    .blog-sidebar{
+      /*border-left: 1px solid #ccc;*/
+    }
+    a:hover{
+      color: #518cbc;
+      text-decoration: none;
+    }
+    body{
+      background-color: #fcfcfc;
+    }
+    .navbar{
+      background-color: white;
+      border-bottom-width: 2px;
+    }
+    footer{
+      background-color: #000000;
+    }
+    footer *{
+      color: white;
+      font-weight: bold;
+    }
+    footer a{
+      color: #286090;
+      text-decoration: underline;
+    }
+    
+    .btn-ligth-primary {
+      color: #757575;
+      padding: 2px 10px;
+      background-color: #d6ecff;
+      border-color: #d6ecff;
+      border-radius: 0;
+    }
+    .btn-ligth-primary:focus,
+    .btn-ligth-primary.focus {
+      color: #757575;
+      padding: 2px 10px;
+      background-color: #d6ecff;
+      border-color: #d6ecff;
+      border-radius: 0;
+    }
+    .btn-ligth-primary:hover {
+      color: #757575;
+      padding: 2px 10px;
+      background-color: #d6ecff;
+      border-color: #d6ecff;
+      border-radius: 0;
+      text-decoration: underline;
+    }
+
+    .no-border{
+      border:none;
+      background-color: transparent;
+    }
+
+    
+  </style>
+
+  {% block other_lib_head %}
+  {% endblock %}
+</head>
+<body>
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="http://opennut.net/content/images/2015/07/Logo-3-02.png" alt="">
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <!-- add search form -->
+        <form class="navbar-form navbar-left" role="search">
+          <div class="input-group" id="adv-search">
+            <input type="text" class="form-control" placeholder="Buscar" />
+            <div class="input-group-btn">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary">&nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="{% url 'home' %}">Questions</a>
+          </li>
+          <li>
+            <a href="">Tags</a>
+          </li>
+          <li>
+            <a href="">Users</a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <!-- User MENU -->
+          <li class="dropdown">
+            {% load static %}
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img alt="" style="height: 18px; max-width:20px;" src="{% get_media_prefix %}{{user.profile.image}}" class="circle">
+              User 
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Perfil</a></li>
+              <li><a href="{% url 'password_change' %}">Cambiar Contraseña</a></li>
+              <li><a href="#">Actividad</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{% url 'logout' %}">Salir</a></li>
+            </ul>
+          </li>
+          <!-- User MENU -->
+          {% else %}
+          <!-- Login / Signup -->
+          <li>
+            <a href="{% url 'register' %}">Registrarse</a>
+          </li>
+          <li>
+            <a href="{% url 'login' %}">Ingresar</a>
+          </li>
+          <!-- Login / Signup -->
+          {% endif %}
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1 blog-main">
+      </div>
+      <div class="col-sm-8 blog-main">
+        <h2 class="blog-title">Open Nut - Blog Stack</h2>
+      </div>
+    </div>
+    <div class="row">
+    {% block title_question %}
+        {% endblock %}
+      
+    </div>
+    <div class="row">
+
+      <div class="col-sm-1 blog-main">
+      </div>
+      <div class="col-sm-8 blog-main">
+        {% block container %}
+        {% endblock %}
+
+      </div><!-- /.blog-main -->
+      <div class="col-sm-3 blog-sidebar">
+        {% block info_sidebar_top %}
+        {% endblock %}
+        <div class="sidebar-module" style="background-color: #fffae8; padding: 10px; border: 1px solid #e8daab;">
+          <h5>Talvez Buscas</h5>
+          <a href="">Texto de Pruebas</a>
+        </div>
+
+        <div class="sidebar-module">
+          <h4>Archives</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">March 2014</a></li>
+            <li><a href="#">February 2014</a></li>
+            <li><a href="#">January 2014</a></li>
+            <li><a href="#">December 2013</a></li>
+            <li><a href="#">November 2013</a></li>
+            <li><a href="#">October 2013</a></li>
+            <li><a href="#">September 2013</a></li>
+            <li><a href="#">August 2013</a></li>
+            <li><a href="#">July 2013</a></li>
+            <li><a href="#">June 2013</a></li>
+            <li><a href="#">May 2013</a></li>
+            <li><a href="#">April 2013</a></li>
+          </ol>
+        </div>
+        <div class="sidebar-module">
+          <h4>Elsewhere</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ol>
+        </div>
+      </div><!-- /.blog-sidebar -->
+    </div><!-- /.row -->
+  </div>
+  <footer class="bs-docs-footer" role="contentinfo">
+    <div class="container">
+      <div class="bs-docs-social">
+        <ul class="bs-docs-social-buttons">
+          <li>
+            <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=wariosolis&amp;repo=express&amp;type=watch&amp;count=true" width="100" height="20" title="Star on GitHub"></iframe>
+          </li>
+          <li>
+            <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=wariosolis&amp;repo=express&amp;type=fork&amp;count=true" width="102" height="20" title="Fork on GitHub"></iframe>
+          </li>
+          <li class="follow-btn">
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="http://platform.twitter.com/widgets/follow_button.3476cd70032ff6b94ecc9ea63ab78a8b.en.html#_=1442463223282&amp;dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=wariosolis&amp;show_count=true&amp;show_screen_name=true&amp;size=m" style="position: static; visibility: visible; width: 224px; height: 20px;" data-screen-name="getbootstrap"></iframe>
+          </li>
+          <li class="tweet-btn">
+            <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="http://platform.twitter.com/widgets/tweet_button.8d007ddfc184e6776be76fe9e5e52d69.en.html#_=1442463223285&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-1&amp;lang=en&amp;original_referer=http%3A%2F%2Fgetbootstrap.com%2Fcomponents%2F&amp;related=mdo%3ACreator%20of%20Bootstrap&amp;size=m&amp;text=Components%20%C2%B7%20Bootstrap&amp;type=share&amp;url=http%3A%2F%2Fgetbootstrap.com%2F&amp;via=getbootstrap" style="position: static; visibility: visible; width: 97px; height: 20px;" data-url="http://getbootstrap.com/"></iframe>
+          </li>
+        </ul>
+      </div>
+
+
+      <p>Desarrollado por Open Nut <a href="https://twitter.com/open_nut" target="_blank">@open_nut</a>.</p>
+      <p>Mantenimiento realizado por <a href="https://twitter.com/wariosolis">Wariosolis</a>, <a href="https://twitter.com/BlackKnightJ5">BlackKnightJ5</a>.</p>
+      <p>Code licensed <a rel="license" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">Open Source</a>, documentacion bajo <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+      <ul class="bs-docs-footer-links text-muted">
+        <li>Version Actual v0.1</li>
+        <li>·</li>
+        <li><a href="http://www.opennut.net">Open Nut</a></li>
+        <li>·</li>
+        <li><a href="http://git.tharix.com/mario.solis/stack-blog">Repositorio</a></li>
+        
+        <li>·</li>
+        <li><a href="http://git.tharix.com/mario.solis/stack-blog/wikis/home">Wiki</a></li>
+        <li>·</li>
+        <li><a href="../about/">About</a></li>
+        <li>·</li>
+        <li><a href="http://expo.getbootstrap.com">Expo</a></li>
+        <li>·</li>
+        <li><a href="http://blog.getbootstrap.com">Blog</a></li>
+        <li>·</li>
+        <li><a href="https://github.com/twbs/bootstrap/issues">Issues</a></li>
+        <li>·</li>
+        <li><a href="https://github.com/twbs/bootstrap/releases">Releases</a></li>
+      </ul>
+    </div>
+  </footer>
+  
+</body>
+</html>

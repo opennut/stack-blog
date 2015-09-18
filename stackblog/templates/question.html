@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title_question %}
+<div class="col-sm-1 blog-main">
+</div>
+<div class="col-sm-11 blog-main">
+	<h3 class="blog-title" style="font-weigth: bold;">{{question.title}}</h3>
+	<hr>
+</div>
+{% endblock%}
+
+{% block info_sidebar_top %}
+
+<div class="table-responsive">
+	<table class="table" style="font-size: 13px;">
+		<tbody>
+			<tr>
+				<th style="border:none; width:20%; color:gray; font-weight:normal;">Fecha</th>
+				<td style="border:none;">{{ question.date|timesince }}</td>
+			</tr>
+			<tr>
+				<th style="border:none; color:gray; font-weight:normal;">Visitas</th>
+				<td style="border:none;">{{question.views}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+{% endblock %}
+
+{% block container %}
+{% load static %}
+<div class="row">
+<div class="col-sm-12 blog-main" style="text-align:center;">
+	<img src="http://static.adzerk.net/Advertisers/a6c57de34e96424c8e5371b688ace94f.png" style="width:100%;" alt="">
+</div>
+
+</div>
+
+<div class="row">
+	<div class="col-xs-1">
+		<br>
+		<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+			<button type="button" class="btn  no-border">
+				<span style="font-size:45px;" class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+			</button>
+			<span type="button" class="btn no-border">
+				<span style="font-size:20px;">100</span>
+			</span>
+			<button type="button" class="btn no-border">
+				<span style="font-size:45px;" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
+	<div class="col-xs-10 col-xs-offset-1" style="padding:35px 30px;">
+		<p class="/*lead*/">{{ question.description}}</p>
+		<div class="media-body">
+			{% for tag in question.tags.all %}
+			<button class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</button>
+			{% endfor %}
+		</div>
+		
+	</div>
+
+	<div class="col-xs-1">
+	</div>
+	<div class="col-xs-6">
+
+		<div class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+			<button type="button" class="btn no-border">
+				Agregar Comentario
+			</button>
+			<span type="button" class="btn no-border">
+				Compartir
+			</span>
+
+		</div>
+	</div>
+	<div class="col-xs-4">
+		<div class="media" style="background-color:#fcfcfc; padding: 10px; border: 1px solid #f2f2f2;">
+			<div class="btn-group pull-left" style="margin-right: 15px;" role="group" aria-label="...">
+				<a href=""><img class="/*img-circle*/" style="max-width:50; height:50px;" src="{% get_media_prefix %}{{question.user.profile.image}}" alt=""></a>
+			</div>
+			<div class="media-body">
+				<a href="">{{question.user.username}}</a>
+				<br>
+				{{question.user.question_set.count}} Preguntas
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+
+{% endblock %}

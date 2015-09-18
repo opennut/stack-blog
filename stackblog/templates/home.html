@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+
+{% block container %}
+<hr>
+<div class="bs-docs-section">
+	{% for question in question_list %}
+	<div class="" data-example-id="default-media">
+		<div class="media" >
+			<div class="btn-group pull-left" style="margin-right: 15px;" role="group" aria-label="...">
+				<button type="button" class="btn btn-default no-border">
+					100
+					<br>
+					Votos
+				</button>
+				<button type="button" class="btn btn-default no-border">
+					100
+					<br>
+					Resp.
+				</button>
+				<button type="button" class="btn btn-default no-border" style="border-radius:0;">
+					{{question.views}}
+					<br>
+					Visitas
+				</button>
+			</div>
+			<div class="media-body">
+				<a href="{% url 'question_detail' question.id %}"><h4 class="media-heading" style="font-weight:normal;">{{  question.title }}</h4></a>
+				{% for tag in question.tags.all %}
+				<button class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</button>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<hr>
+	{% endfor %}
+
+	{% if is_paginated %}
+	<nav>
+		<ul class="pagination">
+			{% if page_obj.has_previous %}
+			<li>
+				<a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+					<span aria-hidden="true">Anterior</span>
+				</a>
+			</li>
+			{% endif %}
+
+			<li {% if page_obj.number == 1%} class="active" {% endif %}><a href="?page=1">1</a></li>
+
+			{% for i in paginator.page_range %}
+
+			{% if i < page_obj.number|add:6 and i > page_obj.number|add:-6 %}
+			{% if  i > 1 and i < page_obj.paginator.num_pages %}
+			<li {% if page_obj.number == i%} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
+			{% endif %}
+			{% else %}
+			{% if i < page_obj.number|add:7 and i > page_obj.number|add:-7 %}
+			<li {% if page_obj.number == i%} class="active" {% endif %}><a href="?page={{i}}">...</a></li>
+			{% endif %}
+			{% endif %}
+				
+			{% endfor %}
+			<li {% if page_obj.number == page_obj.paginator.num_pages %} class="active" {% endif %}><a  href="?page={{page_obj.paginator.num_pages}}">{{page_obj.paginator.num_pages}}</a></li>
+			
+			
+			{% if page_obj.has_next %}
+			<li>
+				<a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+					<span aria-hidden="true">Siguiente</span>
+				</a>
+			</li>
+			{% endif %}
+			
+		</ul>
+	</nav>
+	{% endif %}
+
+</div>
+{% endblock %}
