@@ -24,9 +24,9 @@
 				</button>
 			</div>
 			<div class="media-body">
-				<a href="{% url 'question_detail' question.id %}"><h4 class="media-heading" style="font-weight:normal;">{{  question.title }}</h4></a>
+				<a href="{% url 'question_detail' question.pk %}"><h4 class="media-heading" style="font-weight:normal;">{{  question.title }}</h4></a>
 				{% for tag in question.tags.all %}
-				<button class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</button>
+				<a href="{% url 'home_filter' %}?tag={{tag.name}}" class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</a>
 				{% endfor %}
 			</div>
 		</div>

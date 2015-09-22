@@ -55,7 +55,7 @@
 		<p class="/*lead*/">{{ question.description}}</p>
 		<div class="media-body">
 			{% for tag in question.tags.all %}
-			<button class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</button>
+			<a href="{% url 'home_filter' %}?tag={{tag.name}}" class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</a>
 			{% endfor %}
 		</div>
 		

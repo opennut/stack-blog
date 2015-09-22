@@ -1,0 +1,70 @@
+{% extends 'base_no_sidebar.html' %}
+
+{% block title_question %}
+<div class="col-sm-1 blog-main">
+</div>
+<div class="col-sm-11 blog-main">
+	<h3 class="blog-title" style="font-weigth: bold;">Tags</h3>
+	<hr>
+</div>
+{% endblock%}
+
+
+{% block container %}
+{% load static %}
+
+<style>
+	.thumbnail{
+		border: none;
+		border-radius: 0;
+		background-color: transparent;
+	}
+	.caption a{
+		text-decoration: underline;
+		font-weight: bold;
+	}
+	.caption .badge{
+		margin-left: 5px;
+	}
+	.thumbnail{
+		font-size: 0.8em;
+
+	}
+</style>
+
+<div class="row">
+	<div class="col-sm-4">
+		<form action="" method="get">
+			<div class="input-group">
+				<input name="name" type="text" class="form-control" placeholder="Filtrar..." value="{{ request.GET.name}}">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Buscar!</button>
+				</span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row">
+	{% for tag in tag_list %}
+	<div class="col-sm-3">
+		<div class="thumbnail">
+			<div class="caption">
+				<a href="{% url 'home_filter' %}?tag={{tag.name}}"><h5>{{tag.name}}<span class="badge">{{tag.question_set.count}}</span></h5></a>
+				<p>
+					{{tag.description|truncatechars:100}}
+				</p>
+				<br>
+			</div>
+		</div>
+	</div>
+	{% if forloop.counter|divisibleby:4 %}
+	<hr>
+	{% endif %}
+	{% endfor %}
+</div>
+
+<hr>
+
+
+{% endblock %}
