@@ -19,16 +19,20 @@
 		border-radius: 0;
 		background-color: transparent;
 	}
+	.thumbnail .caption {
+		padding: 0px;
+	}
 	.caption a{
 		text-decoration: underline;
 		font-weight: bold;
+		
 	}
 	.caption .badge{
 		margin-left: 5px;
 	}
 	.thumbnail{
 		font-size: 0.8em;
-
+		margin-bottom: 0px;
 	}
 </style>
 
@@ -52,14 +56,16 @@
 			<div class="caption">
 				<a href="{% url 'home_filter' %}?tag={{tag.name}}"><h5>{{tag.name}}<span class="badge">{{tag.question_set.count}}</span></h5></a>
 				<p>
-					{{tag.description|truncatechars:100}}
+					{{tag.description|truncatechars:200}}
 				</p>
 				<br>
 			</div>
 		</div>
 	</div>
 	{% if forloop.counter|divisibleby:4 %}
+	</div>
 	<hr>
+	<div class="row">
 	{% endif %}
 	{% endfor %}
 </div>
