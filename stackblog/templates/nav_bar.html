@@ -33,9 +33,11 @@
 				<li>
 					<a href="{% url 'users_list' %}">Users</a>
 				</li>
+				{% if user.is_authenticated %}
 				<li>
 					<a href="{% url 'question_create' %}">New Question</a>
 				</li>
+				{% endif %}
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -60,7 +62,7 @@
 				{% else %}
 				<!-- Login / Signup -->
 				<li>
-					<a href="{% url 'register' %}">Registrarse</a>
+					<a href="{% url 'account_signup' %}">Registrarse</a>
 				</li>
 				<li>
 					<a href="{% url 'login' %}">Ingresar</a>
