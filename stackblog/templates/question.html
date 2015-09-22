@@ -64,7 +64,7 @@
 		<p class="/*lead*/">{{ question.description}}</p>
 		<div class="media-body">
 			{% for tag in question.tags.all %}
-			<a href="{% url 'home_filter' %}?tag={{tag.name}}" class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</a>
+			<button class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</button>
 			{% endfor %}
 		</div>
 		
@@ -140,16 +140,17 @@
 {% endfor %}
 
 
-<form method="post" class="col-sm-12" action="{% url "answer" %}">
-	<h4>Respuesta:</h4>
+{% if user.is_authenticated %}
+<form action="" class="col-sm-12" method="post">
+	<h4>Respuesta: </h4>
 	<hr>
-	{% csrf_token %}
-	{{ form|crispy }}
-	<input type="submit" class="btn btn-primary" value="Preguntar">
+		{% csrf_token %}
+		{{form|crispy}}
+<input type="submit" class="btn btn-primary" value="Responder">
 </form>
-
 <script>
 	$("#id_description").markdown({autofocus:false,savable:false})
 </script>
+{% endif %}
 
 {% endblock %}

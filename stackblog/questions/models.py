@@ -36,5 +36,3 @@ class Answer(models.Model):
 	class Meta:
 		verbose_name = "Answer"
 		verbose_name_plural = 'Answer'
-	
-	
