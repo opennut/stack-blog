@@ -6,7 +6,7 @@ from django_extensions.db.fields import UUIDField
 class Perfil(models.Model):
     id = UUIDField(primary_key=True, verbose_name="Id")
     user = models.OneToOneField(User, unique=True, blank=False, null=False, verbose_name="Usuario", related_name='profile')
-    image = models.ImageField(upload_to='profile/', default=None, null=True, blank=True, verbose_name="Foto de Perfil")
+    image = models.ImageField(upload_to='profile/', default="profile/opennut-default-img.png", null=True, blank=True, verbose_name="Foto de Perfil")
     
     class Meta:
     	verbose_name = "Perfil"

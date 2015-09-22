@@ -8,21 +8,30 @@ from django.views.generic import FormView, TemplateView, RedirectView, ListView
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
 # Authentication imports
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm	
 from django.db.models import Q
-
+from .models import Perfil
 
 def register(request):
 	if request.method == 'POST':
 		form = RegisterForm(request.POST)
+		print request.POST
 		
 		x_user = User.objects.filter(email=request.POST["email"])
 		if x_user.count() > 0:
 			form.add_error('email', 'Este email ya existe')
 		else:
 			if form.is_valid():
-				form.save()
+				current = form.save(commit=False)
+				current.save()
+				perfil = Perfil()
+				perfil.user = current
+				perfil.save()
+
+				user = authenticate(username=request.POST["username"], password=request.POST["password1"])
+				login(request, user)
+
 				return HttpResponseRedirect(reverse('home'))
 	else:
 		form = RegisterForm()
