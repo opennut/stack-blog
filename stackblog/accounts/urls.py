@@ -10,4 +10,5 @@ urlpatterns = [
     	{'template_name': 'changepassword.html',
         'post_change_redirect' : 'home'}, 
         name="password_change"),
+    url(r'^users/$', views.UserListView.as_view(), name="users_list"),
 ]

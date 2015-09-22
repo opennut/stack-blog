@@ -4,12 +4,13 @@ from django.http import HttpResponseRedirect
 from .forms import RegisterForm
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
-from django.views.generic import FormView, TemplateView, RedirectView
+from django.views.generic import FormView, TemplateView, RedirectView, ListView
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
 # Authentication imports
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm	
+from django.db.models import Q
 
 
 def register(request):
@@ -52,3 +53,18 @@ class LoginView(FormView):
     def form_valid(self, form):
         login(self.request, form.get_user())
         return super(LoginView, self).form_valid(form)
+
+
+class UserListView(ListView):
+	model = User
+	template_name = "users.html"
+	context_object_name = "users_list"
+	ordering = "last_login"
+
+	def get_queryset(self):
+		qs = super(UserListView, self).get_queryset()
+		filter_name = self.request.GET.get('username', None)
+		if filter_name != None:
+			qs = qs.filter(Q(username__contains=filter_name) | Q(first_name__contains=filter_name) | Q(last_name__contains=filter_name))
+		return qs
+
