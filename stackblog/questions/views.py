@@ -5,6 +5,7 @@ from django.views.generic import DetailView, CreateView, FormView
 from django.contrib.auth.models import User
 from questions.forms import AnsForm
 from django import forms
+from django.contrib.auth.decorators import login_required
 
 class QuestionDetailView(DetailView):
 	model = Question
@@ -29,19 +30,13 @@ class QuestionDetailView(DetailView):
 		return context
 
 
-
-
-
-
-class MyFormView(CreateView):
+class AnswerForm(CreateView):
     form_class = AnsForm
     success_url = '/'
 
     def form_valid(self, form):
 		form.instance.user = self.request.user
-		return super(MyFormView, self).form_valid(form)
-
-
+		return super(AnswerForm, self).form_valid(form)
 
 
 class QuestionCreateView(CreateView):
