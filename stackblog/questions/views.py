@@ -5,6 +5,7 @@ from django.views.generic import DetailView, CreateView, FormView
 from django.contrib.auth.models import User
 from questions.forms import AnsForm
 from django import forms
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 class QuestionDetailView(DetailView):
@@ -29,6 +30,18 @@ class QuestionDetailView(DetailView):
 		context['form'] = form
 		return context
 
+@login_required
+def save_answer(request):
+	if request.method == "POST":
+		print request.POST
+		form = AnsForm(request.POST) 
+		if form.is_valid():
+			current = form.save(commit=False)
+			current.user = request.user
+			current.save()
+			print current
+	return HttpResponseRedirect(reverse("question_detail", args={ request.POST["question"] }))
+
 
 class AnswerForm(CreateView):
 	form_class = AnsForm
@@ -39,7 +52,6 @@ class AnswerForm(CreateView):
 		return super(AnswerForm, self).form_valid(form)
 
 class QuestionCreateView(CreateView):
-	#fields = ["title", "description", "tags"]7
 	model = Question
 	fields = ("title", "description", "tags")
 	template_name = "newquestion.html"

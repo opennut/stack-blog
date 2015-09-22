@@ -141,12 +141,12 @@
 
 
 {% if user.is_authenticated %}
-<form action="" class="col-sm-12" method="post">
+<form action="{% url 'answer_save' %}" class="col-sm-12" method="post">
 	<h4>Respuesta: </h4>
 	<hr>
 		{% csrf_token %}
 		{{form|crispy}}
-<input type="submit" class="btn btn-primary" value="Responder">
+		<input name="guardar" type="submit" class="btn btn-primary"  value="Responder">
 </form>
 <script>
 	$("#id_description").markdown({autofocus:false,savable:false})
