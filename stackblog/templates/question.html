@@ -100,8 +100,8 @@
 </div>
 
 
-<form method="post" class="col-sm-12" action="{% url "my_form_view_url" %}">
-	<h4>¿Que deseas preguntar?</h4>
+<form method="post" class="col-sm-12" action="{% url "answer" %}">
+	<h4>Respuesta:</h4>
 	<hr>
 	{% csrf_token %}
 	{{ form|crispy }}
