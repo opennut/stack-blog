@@ -31,16 +31,15 @@ class QuestionDetailView(DetailView):
 
 
 class AnswerForm(CreateView):
-    form_class = AnsForm
-    success_url = '/'
+	form_class = AnsForm
+	success_url = '/'
 
-    def form_valid(self, form):
+	def form_valid(self, form):
 		form.instance.user = self.request.user
 		return super(AnswerForm, self).form_valid(form)
 
-
 class QuestionCreateView(CreateView):
-	#fields = ["title", "description", "tags"]
+	#fields = ["title", "description", "tags"]7
 	model = Question
 	fields = ("title", "description", "tags")
 	template_name = "newquestion.html"

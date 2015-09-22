@@ -2,7 +2,7 @@ from django.db import models
 from tags.models import Tag
 from django.contrib.auth.models import User
 from markupfield.fields import MarkupField
-from uuslug import slugify
+from django.utils.text import slugify
 
 class Question(models.Model):
 	id = models.SlugField(max_length=200, primary_key=True, blank=False, null=False)
@@ -21,6 +21,11 @@ class Question(models.Model):
 	def __unicode__(self):
 		return self.title
 
+	def save(self, **kwargs):
+		if not self.id:
+			self.id = slugify(self.title)
+		super(Question, self).save(**kwargs)
+
 class Answer(models.Model):
 	user = models.ForeignKey(User, blank=False, null=False, verbose_name="Usuario")
 	question = models.ForeignKey(Question, blank=False, null=False, verbose_name="Question")
@@ -31,6 +36,4 @@ class Answer(models.Model):
 	class Meta:
 		verbose_name = "Answer"
 		verbose_name_plural = 'Answer'
-	def save(self, **kwargs):
-		self.id = slugify(self.title)
-		super(Question, self).save(**kwargs)
+	
