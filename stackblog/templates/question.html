@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load staticfiles %}
+
+{% block other_lib_head %}
+
+<link href="{% static "toopay-bootstrap-markdown/css/bootstrap-markdown.min.css" %}" rel="stylesheet">
+<script src="{% static "toopay-bootstrap-markdown/js/bootstrap-markdown.js" %}"></script>
+
+{% endblock %}
 
 {% block title_question %}
 <div class="col-sm-1 blog-main">
@@ -89,7 +99,17 @@
 	</div>
 </div>
 
-<hr>
 
+<form method="post" class="col-sm-12" action="{% url "my_form_view_url" %}">
+	<h4>¿Que deseas preguntar?</h4>
+	<hr>
+	{% csrf_token %}
+	{{ form|crispy }}
+	<input type="submit" class="btn btn-primary" value="Preguntar">
+</form>
+
+<script>
+	$("#id_description").markdown({autofocus:false,savable:false})
+</script>
 
 {% endblock %}
