@@ -1,7 +1,7 @@
 from django.db import models
 
 class Tag(models.Model):
-    name = models.CharField(max_length=25, blank=False, null=False, unique=True)
+    name = models.CharField(primary_key=True, max_length=25, blank=False, null=False, unique=True)
     description = models.TextField()
     status = models.BooleanField(blank=False, null=False, default=True)
     

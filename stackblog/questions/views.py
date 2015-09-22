@@ -45,8 +45,9 @@ class MyFormView(CreateView):
 
 
 class QuestionCreateView(CreateView):
+	#fields = ["title", "description", "tags"]
 	model = Question
-	fields = ("id", "title", "description", "tags")
+	fields = ("title", "description", "tags")
 	template_name = "newquestion.html"
 	success_url = '/'
 

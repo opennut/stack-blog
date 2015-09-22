@@ -5,4 +5,5 @@ from .views import HomeListQuestions
 urlpatterns = [
     #url(r'^', 'home.views.home', name="home"),
     url(r'^$', HomeListQuestions.as_view(), name="home"),
+    url(r'^questions/$', HomeListQuestions.as_view(), name="home_filter"),
 ]
