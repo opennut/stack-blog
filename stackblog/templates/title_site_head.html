@@ -1,8 +1,16 @@
 {% block title_head %}
-  <title>
-  {% if question %}
-  {{question.title}} - 
-  {% endif %}
-  {{ request.site.name }}
-  </title>
-  {% endblock %}
+{% if question %}
+
+<title>{{question.title}} - {{ request.site.name }}</title>
+<meta name="description" content="{{ question.description|striptags }}">
+<meta name="author" content="{{ question.user }}">
+
+{% else %}
+
+<title>{{ request.site.name }}</title>
+<meta name="description" content="{{ request.site.name }}">
+<meta name="author" content="{{ request.site.name }}">
+
+{% endif %}
+{% endblock %}
+
