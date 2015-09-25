@@ -1,4 +1,6 @@
 {% block title_head %}
+{% load staticfiles %}
+<link rel="icon" href="{% static "favicon.ico" %}">
 {% if question %}
 
 <title>{{question.title}} - {{ request.site.name }}</title>

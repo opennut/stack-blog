@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!--link rel="icon" href="../../favicon.ico"-->
-  {% include 'title_site_head.html' %}
   {% load staticfiles %}
-  <!-- Bootstrap core CSS -->
-  <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static "bootstrap/css/docs.min.css" %}">
+  {% include 'title_site_head.html' %}
+  
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
   <!-- Custom styles for this template -->
@@ -137,7 +135,7 @@
       <div class="col-sm-1 blog-main">
       </div>
       <div class="col-sm-8 blog-main">
-        <h2 class="blog-title">Open Nut - Blog Stack</h2>
+        <a href="{% url 'home' %}"><span class="h2">Open Nut - Blog Stack</span></a>
       </div>
     </div>
     <div class="row">
@@ -149,7 +147,7 @@
 
       <div class="col-sm-1 blog-main">
       </div>
-      <div class="col-sm-11 blog-main">
+      <div class="col-sm-11">
         {% block container %}
         {% endblock %}
 

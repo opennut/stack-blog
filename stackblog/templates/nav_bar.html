@@ -16,7 +16,7 @@
 			<!-- add search form -->
 			<form class="navbar-form navbar-left" method="get" role="search" action="{% url 'home_filter' %}">
 				<div class="input-group" id="adv-search">
-					<input name="search" type="text" class="form-control" placeholder="Buscar" />
+					<input name="search" type="text" class="form-control" placeholder="Buscar" value="{{ request.GET.search }}" />
 					<div class="input-group-btn">
 						<div class="btn-group" role="group">
 							<button type="submit" class="btn btn-primary">&nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
