@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Profile</h1>
+{% trans "Enviar Pregunta" %}
 
-<p>Your profile</p>
+<h1>{% trans "Perfil" %}</h1>
+
 {% load socialaccount %}
 
-<a href="{% provider_login_url "openid" openid="https://www.google.com/accounts/o8/id" next="/success/url/" %}">Google</a>
-<a href="{% provider_login_url "twitter" %}">Twitter</a>
 {% endblock %}

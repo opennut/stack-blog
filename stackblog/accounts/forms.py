@@ -1,17 +1,18 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
 class RegisterForm(UserCreationForm):
     # declare the fields you will show
-    username = forms.CharField(label="Your Username", required=True)
+    username = forms.CharField(label=_("Nombre de Usuario"), required=True)
     # first password field
-    password1 = forms.CharField(label="Your Password",widget=forms.PasswordInput, required=True)
+    password1 = forms.CharField(label=_("Tu Contraseña"),widget=forms.PasswordInput, required=True)
     # confirm password field
-    password2 = forms.CharField(label="Repeat Your Password",widget=forms.PasswordInput, required=True)
-    email = forms.EmailField(label = "Email Address", required=True)
-    first_name = forms.CharField(label = "Name", required=True)
-    last_name = forms.CharField(label = "Surname", required=True)
+    password2 = forms.CharField(label=_("Repite tu Contraseña"),widget=forms.PasswordInput, required=True)
+    email = forms.EmailField(label = _("Correo Electrónico"), required=True)
+    first_name = forms.CharField(label = _("Nombre"), required=True)
+    last_name = forms.CharField(label = _("Apellido"), required=True)
  
     # this sets the order of the fields
     class Meta:

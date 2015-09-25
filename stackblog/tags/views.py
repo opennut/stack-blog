@@ -2,6 +2,7 @@ from django.shortcuts import render
 from tags.models import Tag
 from django.views.generic import ListView
 from django.db.models import Q
+from django.utils.translation import gettext as _
 
 class TagsListView(ListView):
 	model = Tag

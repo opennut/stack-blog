@@ -1,6 +1,8 @@
 {% extends 'base.html'%}
 
 {% block container %}
+{% load i18n %}
+
 <hr>
 <div class="bs-docs-section">
 	{% for question in question_list %}
@@ -15,12 +17,12 @@
 				<button type="button" class="btn btn-default no-border">
 					{{ question.answer_set.count }}
 					<br>
-					Resp.
+					{% trans "Respuestas" %}
 				</button>
 				<button type="button" class="btn btn-default no-border" style="border-radius:0;">
 					{{question.views}}
 					<br>
-					Visitas
+					{% trans "Visitas" %}
 				</button>
 			</div>
 			<div class="media-body">
@@ -40,7 +42,7 @@
 			{% if page_obj.has_previous %}
 			<li>
 				<a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-					<span aria-hidden="true">Anterior</span>
+					<span aria-hidden="true">{% trans "Anterior" %}</span>
 				</a>
 			</li>
 			{% endif %}
@@ -66,7 +68,7 @@
 			{% if page_obj.has_next %}
 			<li>
 				<a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-					<span aria-hidden="true">Siguiente</span>
+					<span aria-hidden="true">{% trans "Siguiente" %}</span>
 				</a>
 			</li>
 			{% endif %}

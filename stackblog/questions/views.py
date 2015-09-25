@@ -8,6 +8,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.utils.translation import gettext as _
 
 class QuestionDetailView(DetailView):
 	model = Question
@@ -19,14 +20,10 @@ class QuestionDetailView(DetailView):
 
 	def get(self, request, *args, **kwargs):
 		date = self.get_object().date
-		print "self.get_object().date"
-		print self.get_object().date
 		self.object = self.get_object()
 		self.object.views += 1
 		self.object.date = date
 		self.object.save()
-		print "self.object.date"
-		print self.object.date
 		return super(QuestionDetailView, self).get(request, *args, **kwargs)
 
 	def get_context_data(self, **kwargs):

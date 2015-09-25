@@ -1,0 +1,236 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-25 16:31-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/forms.py:8
+msgid "Nombre de Usuario"
+msgstr ""
+
+#: accounts/forms.py:10
+msgid "Tu Contraseña"
+msgstr ""
+
+#: accounts/forms.py:12
+msgid "Repite tu Contraseña"
+msgstr ""
+
+#: accounts/forms.py:13
+msgid "Correo Electrónico"
+msgstr ""
+
+#: accounts/forms.py:14
+msgid "Nombre"
+msgstr ""
+
+#: accounts/forms.py:15
+msgid "Apellido"
+msgstr ""
+
+#: accounts/models.py:9
+msgid "Id"
+msgstr ""
+
+#: accounts/models.py:10 questions/models.py:11 questions/models.py:31
+msgid "Usuario"
+msgstr ""
+
+#: accounts/models.py:11
+msgid "Foto de Perfil"
+msgstr ""
+
+#: accounts/models.py:14 templates/nav_bar.html:56 templates/profile.html:6
+msgid "Perfil"
+msgstr ""
+
+#: accounts/models.py:15
+msgid "Perfiles"
+msgstr ""
+
+#: accounts/views.py:24
+msgid "Este email ya existe"
+msgstr ""
+
+#: accounts/views.py:61
+msgid "Tu usuario y tu contraseña no concuerdan"
+msgstr ""
+
+#: questions/models.py:10
+msgid "Titulo"
+msgstr ""
+
+#: questions/models.py:12 questions/models.py:33 templates/question.html:42
+msgid "Fecha"
+msgstr ""
+
+#: questions/models.py:13 questions/models.py:34
+msgid "Descripcion"
+msgstr ""
+
+#: questions/models.py:19 questions/models.py:32
+msgid "Pregunta"
+msgstr ""
+
+#: questions/models.py:20 templates/nav_bar.html:30 templates/question.html:111
+#: templates/question.html.py:142 templates/users.html:60
+msgid "Preguntas"
+msgstr ""
+
+#: questions/models.py:38
+msgid "Respuesta"
+msgstr ""
+
+#: questions/models.py:39 templates/home.html:20 templates/question.html:158
+msgid "Respuestas"
+msgstr ""
+
+#: stackblog/settings.py:169
+msgid "Español"
+msgstr ""
+
+#: stackblog/settings.py:170
+msgid "Ingles"
+msgstr ""
+
+#: tags/models.py:10
+msgid "Tag"
+msgstr ""
+
+#: tags/models.py:11
+msgid "Tags"
+msgstr ""
+
+#: templates/base.html:55
+msgid "Publicidad"
+msgstr ""
+
+#: templates/changepassword.html:11
+msgid "Cambiar de Contraseña"
+msgstr ""
+
+#: templates/changepassword.html:13
+msgid "Cambiar"
+msgstr ""
+
+#: templates/footer.html:21
+msgid "Desarrollado por Open Nut"
+msgstr ""
+
+#: templates/footer.html:22
+msgid "Mantenimiento realizado por"
+msgstr ""
+
+#: templates/footer.html:23
+msgid "Licenciamiento del Codigo Fuente"
+msgstr ""
+
+#: templates/footer.html:25
+msgid "Version Actual"
+msgstr ""
+
+#: templates/home.html:25 templates/question.html:46
+msgid "Visitas"
+msgstr ""
+
+#: templates/home.html:45
+msgid "Anterior"
+msgstr ""
+
+#: templates/home.html:71
+msgid "Siguiente"
+msgstr ""
+
+#: templates/login.html:11
+msgid "Iniciar Sesion"
+msgstr ""
+
+#: templates/login.html:11 templates/login.html.py:36
+msgid "ó"
+msgstr ""
+
+#: templates/login.html:64
+msgid "Entrar"
+msgstr ""
+
+#: templates/login.html:72
+msgid "Recordarme"
+msgstr ""
+
+#: templates/login.html:78
+msgid "Olvidé mi contraseña"
+msgstr ""
+
+#: templates/nav_bar.html:20 templates/tags.html:46 templates/users.html:43
+msgid "Buscar"
+msgstr ""
+
+#: templates/nav_bar.html:33 templates/tags.html:8
+msgid "Categorias"
+msgstr ""
+
+#: templates/nav_bar.html:36 templates/users.html:9
+msgid "Usuarios"
+msgstr ""
+
+#: templates/nav_bar.html:40
+msgid "Nueva Pregunta"
+msgstr ""
+
+#: templates/nav_bar.html:57
+msgid "Cambiar Contraseña"
+msgstr ""
+
+#: templates/nav_bar.html:58
+msgid "Actividad"
+msgstr ""
+
+#: templates/nav_bar.html:60
+msgid "Salir"
+msgstr ""
+
+#: templates/nav_bar.html:67 templates/register.html:13
+msgid "Crear Cuenta"
+msgstr ""
+
+#: templates/nav_bar.html:70
+msgid "Ingreso"
+msgstr ""
+
+#: templates/newquestion.html:17
+msgid "¿Que deseas preguntar?"
+msgstr ""
+
+#: templates/newquestion.html:21 templates/profile.html:4
+msgid "Enviar Pregunta"
+msgstr ""
+
+#: templates/question.html:95
+msgid "Comentar"
+msgstr ""
+
+#: templates/question.html:162
+msgid "Responder"
+msgstr ""
+
+#: templates/register.html:9
+msgid "Registro de Usuario"
+msgstr ""
+
+#: templates/tags.html:44 templates/users.html:41
+msgid "Filtrar"
+msgstr ""

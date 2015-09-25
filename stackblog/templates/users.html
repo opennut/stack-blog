@@ -1,10 +1,12 @@
 {% extends 'base_no_sidebar.html' %}
 
+{% load i18n %}
+
 {% block title_question %}
 <div class="col-sm-1 blog-main">
 </div>
 <div class="col-sm-11 blog-main">
-	<h3 class="blog-title" style="font-weigth: bold;">Users</h3>
+	<h3 class="blog-title" style="font-weigth: bold;">{% trans "Usuarios" %}</h3>
 	<hr>
 </div>
 {% endblock%}
@@ -36,9 +38,9 @@
 	<div class="col-sm-4">
 		<form action="" method="get">
 			<div class="input-group">
-				<input name="username" type="text" class="form-control" placeholder="Filtrar..." value="{{ request.GET.username }}">
+				<input name="username" type="text" class="form-control" placeholder="{% trans "Filtrar" %}..." value="{{ request.GET.username }}">
 				<span class="input-group-btn">
-					<button class="btn btn-default" type="submit">Buscar!</button>
+					<button class="btn btn-default" type="submit">{% trans "Buscar" %}!</button>
 				</span>
 			</div>
 		</form>
@@ -55,7 +57,7 @@
 			<div class="media-body">
 				<a href="">{{current_user.username}}</a>
 				<br>
-				{{current_user.question_set.count}} Preguntas
+				{{current_user.question_set.count}} {% trans "Preguntas" %}
 			</div>
 		</div>
 	</div>

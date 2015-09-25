@@ -5,122 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% load staticfiles %}
+  {% load i18n %}
   {% include 'title_site_head.html' %}
   
   <link rel="stylesheet" href="{% static "css/style.css" %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-  <!-- Custom styles for this template -->
-  <style>
-    .navbar-static-top {
-      margin-bottom: 19px;
-    }
-    .navbar-brand img{
-      height: 100%;
-    }
-
-    .dropdown.dropdown-lg .dropdown-menu {
-      margin-top: -1px;
-      padding: 6px 20px;
-    }
-    .input-group-btn .btn-group {
-      display: flex !important;
-    }
-    .btn-group .btn {
-      border-radius: 0;
-      margin-left: -1px;
-    }
-    .btn-group .btn:last-child {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-    .btn-group .form-horizontal .btn[type="submit"] {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-    .form-horizontal .form-group {
-      margin-left: 0;
-      margin-right: 0;
-    }
-    .form-group .form-control:last-child {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-    }
-
-    @media screen and (min-width: 768px) {
-      #adv-search {
-        width: 500px;
-        margin: 0 auto;
-      }
-      .dropdown.dropdown-lg {
-        position: static !important;
-      }
-      .dropdown.dropdown-lg .dropdown-menu {
-        min-width: 500px;
-      }
-    }
-
-    .bs-docs-footer{
-      margin-top: 30px;
-    }
-
-    .blog-sidebar{
-      /*border-left: 1px solid #ccc;*/
-    }
-    a:hover{
-      color: #518cbc;
-      text-decoration: none;
-    }
-    body{
-      background-color: #fcfcfc;
-    }
-    .navbar{
-      background-color: white;
-      border-bottom-width: 2px;
-    }
-    footer{
-      background-color: #000000;
-    }
-    footer *{
-      color: white;
-      font-weight: bold;
-    }
-    footer a{
-      color: #286090;
-      text-decoration: underline;
-    }
-    
-    .btn-ligth-primary {
-      color: #757575;
-      padding: 2px 10px;
-      background-color: #d6ecff;
-      border-color: #d6ecff;
-      border-radius: 0;
-    }
-    .btn-ligth-primary:focus,
-    .btn-ligth-primary.focus {
-      color: #757575;
-      padding: 2px 10px;
-      background-color: #d6ecff;
-      border-color: #d6ecff;
-      border-radius: 0;
-    }
-    .btn-ligth-primary:hover {
-      color: #757575;
-      padding: 2px 10px;
-      background-color: #d6ecff;
-      border-color: #d6ecff;
-      border-radius: 0;
-      text-decoration: underline;
-    }
-
-    .no-border{
-      border:none;
-      background-color: transparent;
-    }
-
-    
-  </style>
 
   {% block other_lib_head %}
   {% endblock %}
@@ -162,7 +52,7 @@
         {% block info_sidebar_top %}
         {% endblock %}
         <div class="sidebar-module" style="background-color: #fffae8; padding: 10px; border: 1px solid #e8daab;">
-          <h5>Publicidad</h5>
+          <h5>{% trans "Publicidad" %}</h5>
         </div>
         <br>
         {% load tag_side_bar_tags  %}
@@ -172,47 +62,7 @@
       </div><!-- /.blog-sidebar -->
     </div><!-- /.row -->
   </div>
-  <footer class="bs-docs-footer" role="contentinfo">
-    <div class="container">
-      <div class="bs-docs-social">
-        <ul class="bs-docs-social-buttons">
-          <li>
-            <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=wariosolis&amp;repo=express&amp;type=watch&amp;count=true" width="100" height="20" title="Star on GitHub"></iframe>
-          </li>
-          <li>
-            <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=wariosolis&amp;repo=express&amp;type=fork&amp;count=true" width="102" height="20" title="Fork on GitHub"></iframe>
-          </li>
-          <li class="follow-btn">
-            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="http://platform.twitter.com/widgets/follow_button.3476cd70032ff6b94ecc9ea63ab78a8b.en.html#_=1442463223282&amp;dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=wariosolis&amp;show_count=true&amp;show_screen_name=true&amp;size=m" style="position: static; visibility: visible; width: 224px; height: 20px;" data-screen-name="getbootstrap"></iframe>
-          </li>
-          <li class="tweet-btn">
-            <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="http://platform.twitter.com/widgets/tweet_button.8d007ddfc184e6776be76fe9e5e52d69.en.html#_=1442463223285&amp;count=horizontal&amp;dnt=false&amp;id=twitter-widget-1&amp;lang=en&amp;original_referer=http%3A%2F%2Fgetbootstrap.com%2Fcomponents%2F&amp;related=mdo%3ACreator%20of%20Bootstrap&amp;size=m&amp;text=Components%20%C2%B7%20Bootstrap&amp;type=share&amp;url=http%3A%2F%2Fgetbootstrap.com%2F&amp;via=getbootstrap" style="position: static; visibility: visible; width: 97px; height: 20px;" data-url="http://getbootstrap.com/"></iframe>
-          </li>
-        </ul>
-      </div>
-
-
-      <p>Desarrollado por Open Nut <a href="https://twitter.com/open_nut" target="_blank">@open_nut</a>.</p>
-      <p>Mantenimiento realizado por <a href="https://twitter.com/wariosolis">Wariosolis</a>, <a href="https://twitter.com/BlackKnightJ5">BlackKnightJ5</a>.</p>
-      <p>Code licensed <a rel="license" href="https://github.com/opennut/stack-blog/blob/master/LICENSE" target="_blank">Open Source</a>, documentacion bajo <a rel="license" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
-      <ul class="bs-docs-footer-links text-muted">
-        <li>Version Actual v0.1</li>
-        <li>·</li>
-        <li><a href="http://www.opennut.net">Open Nut</a></li>
-        <li>·</li>
-        <li><a href="https://github.com/opennut/stack-blog">Repositorio</a></li>
-        
-        <li>·</li>
-        <li><a href="https://github.com/opennut/stack-blog/wikis/home">Wiki</a></li>
-        <li>·</li>
-        <li><a href="http://www.opennut.net">Blog</a></li>
-        <li>·</li>
-        <li><a href="https://github.com/opennut/stack-blog/issues">Issues</a></li>
-        <li>·</li>
-        <li><a href="https://github.com/opennut/stack-blog/releases">Releases</a></li>
-      </ul>
-    </div>
-  </footer>
+  {% include 'footer.html' %}
   
 </body>
 </html>

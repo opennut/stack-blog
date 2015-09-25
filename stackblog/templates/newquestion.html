@@ -2,6 +2,7 @@
 
 {% load crispy_forms_tags %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block other_lib_head %}
 
@@ -13,11 +14,11 @@
 {% block container %}
 
 <form action="" class="col-sm-12" method="post">
-	<h4>¿Que deseas preguntar?</h4>
+	<h4>{% trans "¿Que deseas preguntar?" %}</h4>
 	<hr>
 	{% csrf_token %}
 	{{ form|crispy }}
-	<input type="submit" class="btn btn-primary" value="Preguntar">
+	<input type="submit" class="btn btn-primary" value="{% trans "Enviar Pregunta" %}">
 </form>
 <script>
 	$("#id_description").markdown({autofocus:false,savable:false})

@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% load staticfiles %}
+{% load i18n %}
 
 {% block other_lib_head %}
 
@@ -38,11 +39,11 @@
 	<table class="table" style="font-size: 13px;">
 		<tbody>
 			<tr>
-				<th style="border:none; width:20%; color:gray; font-weight:normal;">Fecha</th>
+				<th style="border:none; width:20%; color:gray; font-weight:normal;">{% trans "Fecha" %}</th>
 				<td style="border:none;">{{ question.date|date:"d M Y" }}</td>
 			</tr>
 			<tr>
-				<th style="border:none; color:gray; font-weight:normal;">Visitas</th>
+				<th style="border:none; color:gray; font-weight:normal;">{% trans "Visitas" %}</th>
 				<td style="border:none;">{{question.views}}</td>
 			</tr>
 		</tbody>
@@ -91,7 +92,7 @@
 				<div id="fb-root"></div>
 				<a href="#id_description" onclick="javascript:window.getElementById('id_description').focus();" type="button" class="btn btn-default btn-xs" style="margin-top: -12px;">
 					<i class="glyphicon glyphicon-comment"></i>
-					Comentar
+					{% trans "Comentar" %}
 				</a>
 				<div class="fb-share-button" data-href="{{ request.build_absolute_uri }}"data-layout="button"></div>
 				<a href="https://twitter.com/share" class="twitter-share-button" data-via="open_nut" data-count="none" data-hashtags="opennut">Tweet</a>
@@ -107,7 +108,7 @@
 				<div class="media-body">
 					<a href="">{{question.user.username}}</a>
 					<br>
-					{{question.user.question_set.count}} Preguntas
+					{{question.user.question_set.count}} {% trans "Preguntas" %}
 				</div>
 			</div>
 		</div>
@@ -138,7 +139,7 @@
 				<div class="media-body">
 					<a href="">{{current.user.username}}</a>
 					<br>
-					{{current.user.question_set.count}} Preguntas
+					{{current.user.question_set.count}} {% trans "Preguntas" %}
 				</div>
 			</div>
 		</div>
@@ -151,12 +152,14 @@
 
 
 {% if user.is_authenticated %}
+<br>
+<br>
 <form action="{% url 'answer_save' %}" class="col-sm-12" method="post">
-	<h4>Respuesta: </h4>
+	<h4>{% trans "Respuestas" %}: </h4>
 	<hr>
 	{% csrf_token %}
 	{{form|crispy}}
-	<input name="guardar" type="submit" class="btn btn-primary"  value="Responder">
+	<input name="guardar" type="submit" class="btn btn-primary"  value="{% trans "Responder" %}">
 </form>
 <script>
 	$("#id_description").markdown({autofocus:false,savable:false})

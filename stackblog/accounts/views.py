@@ -12,6 +12,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm	
 from django.db.models import Q
 from .models import Perfil
+from django.utils.translation import gettext as _
 
 def register(request):
 	if request.method == 'POST':
@@ -20,7 +21,7 @@ def register(request):
 		
 		x_user = User.objects.filter(email=request.POST["email"])
 		if x_user.count() > 0:
-			form.add_error('email', 'Este email ya existe')
+			form.add_error('email', _('Este email ya existe'))
 		else:
 			if form.is_valid():
 				current = form.save(commit=False)
@@ -57,7 +58,7 @@ class LoginView(FormView):
             return HttpResponseRedirect(reverse('home'))
         else:
             return super(LoginView, self).dispatch(request, *args, **kwargs)
-            return HttpResponse("Your username and password didn't match.")
+            return HttpResponse(_("Tu usuario y tu contraseña no concuerdan"))
 
     def form_valid(self, form):
         login(self.request, form.get_user())

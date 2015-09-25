@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -16,7 +17,7 @@
 			<!-- add search form -->
 			<form class="navbar-form navbar-left" method="get" role="search" action="{% url 'home_filter' %}">
 				<div class="input-group" id="adv-search">
-					<input name="search" type="text" class="form-control" placeholder="Buscar" value="{{ request.GET.search }}" />
+					<input name="search" type="text" class="form-control" placeholder="{% trans "Buscar" %}" value="{{ request.GET.search }}" />
 					<div class="input-group-btn">
 						<div class="btn-group" role="group">
 							<button type="submit" class="btn btn-primary">&nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -26,17 +27,17 @@
 			</form>
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="{% url 'home' %}">Questions</a>
+					<a href="{% url 'home' %}">{% trans "Preguntas" %}</a>
 				</li>
 				<li>
-					<a href="{% url 'tags_list' %}">Tags</a>
+					<a href="{% url 'tags_list' %}">{% trans "Categorias" %}</a>
 				</li>
 				<li>
-					<a href="{% url 'users_list' %}">Users</a>
+					<a href="{% url 'users_list' %}">{% trans "Usuarios" %}</a>
 				</li>
 				{% if user.is_authenticated %}
 				<li>
-					<a href="{% url 'question_create' %}">New Question</a>
+					<a href="{% url 'question_create' %}">{% trans "Nueva Pregunta" %}</a>
 				</li>
 				{% endif %}
 			</ul>
@@ -52,21 +53,21 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Perfil</a></li>
-						<li><a href="{% url 'password_change' %}">Cambiar Contraseña</a></li>
-						<li><a href="#">Actividad</a></li>
+						<li><a href="#">{% trans "Perfil" %}</a></li>
+						<li><a href="{% url 'password_change' %}">{% trans "Cambiar Contraseña" %}</a></li>
+						<li><a href="#">{% trans "Actividad" %}</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="{% url 'logout' %}">Salir</a></li>
+						<li><a href="{% url 'logout' %}">{% trans "Salir" %}</a></li>
 					</ul>
 				</li>
 				<!-- User MENU -->
 				{% else %}
 				<!-- Login / Signup -->
 				<li>
-					<a href="{% url 'account_signup' %}">Registrarse</a>
+					<a href="{% url 'account_signup' %}">{% trans "Crear Cuenta" %}</a>
 				</li>
 				<li>
-					<a href="{% url 'login' %}">Ingresar</a>
+					<a href="{% url 'login' %}">{% trans "Ingreso" %}</a>
 				</li>
 				<!-- Login / Signup -->
 				{% endif %}
