@@ -111,5 +111,11 @@ footer a{
 }
 
 .h2{
-  margin-top: 20px;margin-bottom: 10px;display: block;-webkit-margin-before: 0.83em;-webkit-margin-after: 0.83em;-webkit-margin-start: 0px;-webkit-margin-end: 0px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  /*display: block;*/
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
 }
