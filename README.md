@@ -2,7 +2,7 @@
 
 ## ¿Que es Stack-Blog?
 
-Stack-blog es un sistema de foro open source desarrollado por [Open Nut](http://opennut.net) sobre Django 1.8 y (MongoDB o SqlLite).
+Stack-blog es un sistema de foro open source desarrollado por [Open Nut](http://opennut.net) sobre Django 1.8 y ( SqlLite, mysql).
 
 ## Develop (branch)
 
