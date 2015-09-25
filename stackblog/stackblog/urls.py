@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^questions/', include("questions.urls")),
     url(r'^tags/', include("tags.urls")),
     url(r'^accounts/', include("accounts.urls")),
+    
     url(r'^', include("home.urls")),
     
 ]

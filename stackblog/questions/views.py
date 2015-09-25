@@ -23,7 +23,7 @@ class QuestionDetailView(DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(QuestionDetailView, self).get_context_data(**kwargs)
-		form = AnsForm() 
+		form = AnsForm()
 		form.fields['question'].widget = forms.HiddenInput()
 		form.fields["question"].initial = self.get_object().id
 		context['form'] = form

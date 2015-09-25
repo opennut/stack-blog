@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^users/$', views.UserListView.as_view(), name="users_list"),
     url(r'^profile/$', TemplateView.as_view(template_name='profile.html')),
     url(r'^', include('allauth.urls')),
+    
 ]
