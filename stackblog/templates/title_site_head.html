@@ -1,0 +1,8 @@
+{% block title_head %}
+  <title>
+  {% if question %}
+  {{question.title}} - 
+  {% endif %}
+  {{ request.site.name }}
+  </title>
+  {% endblock %}
