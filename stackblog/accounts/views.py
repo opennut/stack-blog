@@ -58,7 +58,7 @@ class LoginView(FormView):
             return HttpResponseRedirect(reverse('home'))
         else:
             return super(LoginView, self).dispatch(request, *args, **kwargs)
-            return HttpResponse(_("Tu usuario y tu contraseña no concuerdan"))
+            return HttpResponse(_("Tu usuario y tu contrasena no concuerdan"))
 
     def form_valid(self, form):
         login(self.request, form.get_user())

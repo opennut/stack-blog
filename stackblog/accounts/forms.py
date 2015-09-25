@@ -7,10 +7,10 @@ class RegisterForm(UserCreationForm):
     # declare the fields you will show
     username = forms.CharField(label=_("Nombre de Usuario"), required=True)
     # first password field
-    password1 = forms.CharField(label=_("Tu Contraseña"),widget=forms.PasswordInput, required=True)
+    password1 = forms.CharField(label=_("Tu Contrasena"),widget=forms.PasswordInput, required=True)
     # confirm password field
-    password2 = forms.CharField(label=_("Repite tu Contraseña"),widget=forms.PasswordInput, required=True)
-    email = forms.EmailField(label = _("Correo Electrónico"), required=True)
+    password2 = forms.CharField(label=_("Repite tu Contrasena"),widget=forms.PasswordInput, required=True)
+    email = forms.EmailField(label = _("Correo Electronico"), required=True)
     first_name = forms.CharField(label = _("Nombre"), required=True)
     last_name = forms.CharField(label = _("Apellido"), required=True)
  
