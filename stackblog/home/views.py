@@ -18,4 +18,5 @@ class HomeListQuestions(ListView):
 		filter_name = self.request.GET.get('search', None)
 		if filter_name != None:
 			qs = qs.filter(Q(title__contains=filter_name) | Q(description__contains=filter_name))
+		qs = qs.order_by("-date")
 		return qs

@@ -7,6 +7,7 @@ from questions.forms import AnsForm
 from django import forms
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+import datetime
 
 class QuestionDetailView(DetailView):
 	model = Question
@@ -17,9 +18,15 @@ class QuestionDetailView(DetailView):
 	context_object_name = "question"
 
 	def get(self, request, *args, **kwargs):
+		date = self.get_object().date
+		print "self.get_object().date"
+		print self.get_object().date
 		self.object = self.get_object()
 		self.object.views += 1
+		self.object.date = date
 		self.object.save()
+		print "self.object.date"
+		print self.object.date
 		return super(QuestionDetailView, self).get(request, *args, **kwargs)
 
 	def get_context_data(self, **kwargs):
@@ -33,11 +40,11 @@ class QuestionDetailView(DetailView):
 @login_required
 def save_answer(request):
 	if request.method == "POST":
-		print request.POST
 		form = AnsForm(request.POST) 
 		if form.is_valid():
 			current = form.save(commit=False)
 			current.user = request.user
+			current.date = datetime.datetime.now()
 			current.save()
 			print current
 	return HttpResponseRedirect(reverse("question_detail", args={ request.POST["question"] }))
@@ -59,4 +66,5 @@ class QuestionCreateView(CreateView):
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
+		form.instance.date = datetime.datetime.now()
 		return super(QuestionCreateView, self).form_valid(form)
