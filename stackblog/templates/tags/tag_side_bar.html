@@ -1,0 +1,11 @@
+
+<div class="sidebar-module">
+	<div class="list-group">
+		{% for cur_tag in tags_side %}
+		<a href="{% url 'home_filter' %}?tag={{cur_tag.name}}" class="list-group-item">
+			{{ cur_tag.name }}
+			<span class="badge">{{ cur_tag.question_set.count }}</span>
+		</a>
+		{% endfor %}
+	</div>
+</div>
