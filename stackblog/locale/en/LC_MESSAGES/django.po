@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-25 16:31-0600\n"
+"POT-Creation-Date: 2015-09-25 17:55-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgid "Nombre de Usuario"
 msgstr ""
 
 #: accounts/forms.py:10
-msgid "Tu Contraseña"
+msgid "Tu Contrasena"
 msgstr ""
 
 #: accounts/forms.py:12
-msgid "Repite tu Contraseña"
+msgid "Repite tu Contrasena"
 msgstr ""
 
 #: accounts/forms.py:13
-msgid "Correo Electrónico"
+msgid "Correo Electronico"
 msgstr ""
 
 #: accounts/forms.py:14
@@ -66,7 +66,7 @@ msgid "Este email ya existe"
 msgstr ""
 
 #: accounts/views.py:61
-msgid "Tu usuario y tu contraseña no concuerdan"
+msgid "Tu usuario y tu contrasena no concuerdan"
 msgstr ""
 
 #: questions/models.py:10
@@ -98,14 +98,6 @@ msgstr ""
 msgid "Respuestas"
 msgstr ""
 
-#: stackblog/settings.py:169
-msgid "Español"
-msgstr ""
-
-#: stackblog/settings.py:170
-msgid "Ingles"
-msgstr ""
-
 #: tags/models.py:10
 msgid "Tag"
 msgstr ""
@@ -126,19 +118,19 @@ msgstr ""
 msgid "Cambiar"
 msgstr ""
 
-#: templates/footer.html:21
+#: templates/footer.html:22
 msgid "Desarrollado por Open Nut"
 msgstr ""
 
-#: templates/footer.html:22
+#: templates/footer.html:23
 msgid "Mantenimiento realizado por"
 msgstr ""
 
-#: templates/footer.html:23
+#: templates/footer.html:24
 msgid "Licenciamiento del Codigo Fuente"
 msgstr ""
 
-#: templates/footer.html:25
+#: templates/footer.html:26
 msgid "Version Actual"
 msgstr ""
 
