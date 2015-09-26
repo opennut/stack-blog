@@ -44,7 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'crispy_forms',
+    'bootstrapform',
     
     'allauth',
     'allauth.account',
@@ -69,7 +70,7 @@ INSTALLED_APPS = (
     'accounts',
     'tags',
     'questions',
-    'crispy_forms',
+    
     'django_faker',
 
 )
@@ -230,6 +231,7 @@ SOCIALACCOUNT_PROVIDERS = \
 
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
+ACCOUNT_UNIQUE_EMAIL = True
 
 
 try:
