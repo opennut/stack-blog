@@ -71,7 +71,6 @@ INSTALLED_APPS = (
     'tags',
     'questions',
     
-    'django_faker',
 
 )
 
