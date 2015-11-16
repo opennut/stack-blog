@@ -1,10 +1,83 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+% load staticfiles %}
 {% load i18n %}
-{% block content %}
-{% trans "Enviar Pregunta" %}
+{% load static %}
+{% block container %}
 
-<h1>{% trans "Perfil" %}</h1>
+ 
 
-{% load socialaccount %}
+ 	<div class='row' style="margin-top: 20px; margin-bottom: 20px;">
+ 		<div class=''>
+	  		<div class='col-xs-6'>
+					<img alt="" style="height: 230; max-width:250; margin-left: 55px;" src="{% get_media_prefix %}{{user.profile.image}}">
+				<div class="alert alert-success" role="alert" style="margin-top: 10px;">
+					<h4>
+						{% trans "E-mail: " %}{{user.email}}
+					</h4>
+				</div>
+			</div>
+			<div class='col-xs-6'>
+				<div class='jumbotron'>
+					<h1> {{request.user}} </h1>
+					<div class="media-body">
+						<FONT SIZE=4>
+						<h3>Actividad de usuario:</h3>
+						{% trans "Preguntas: " %} {{user.question_set.count}} 
+						<br>
+						{% trans "Respuestas: " %} {{user.answer_set.count}} 
+						</FONT>
+					</div>
+				</div>
+			</div>
+		</div>
+ 	</div>
 
-{% endblock %}
+ <div class="row">
+ 	<div class='col-xs-6'>
+		<div class="alert alert-info" role="alert">
+			<h4>Preguntas por el usuario:</h4>
+		</div>
+	</div>
+</div>
+
+ 	
+ {% for question in user.question_set.all %}
+
+	<div class="col-xs-push-6" data-example-id="default-media">
+			<div class="media" >
+				<div class="btn-group pull-left" style="margin-right: 15px;" role="group" aria-label="...">
+					<button type="button" class="btn btn-default no-border">
+						{{ question.answer_set.count }}
+						<br>
+						{% trans "Respuestas" %}
+					</button>
+					<button type="button" class="btn btn-default no-border" style="border-radius:0;">
+						{{question.views}}
+						<br>
+						{% trans "Visitas" %}
+					</button>
+				</div>
+				<div class="media-body">
+					<a href="{% url 'question_detail' question.pk %}"><h4 class="media-heading" style="font-weight:normal;">
+						{{question.title }}</h4></a>
+					{% for tag in question.tags.all %}
+					<a href="{% url 'home_filter' %}?tag={{tag.name}}" class="btn btn-primary btn-xs btn-ligth-primary" type="button">{{ tag.name }}</a>
+					{% endfor %}
+				</div>
+			</div>
+	</div>
+ {% endfor %}
+
+<!--
+<div class='row'>
+	<form action="" class="col-sm-6 col-md-6 col-lg-6" method="post">
+
+		{% csrf_token %}
+		{{ form|crispy }}
+		<input type="submit" class="btn btn-primary" value="{% trans "Actualizar Avatar" %}">
+
+	</form>
+</div>	
+-->
+ {% endblock %}

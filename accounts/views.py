@@ -4,14 +4,16 @@ from django.http import HttpResponseRedirect
 from .forms import RegisterForm
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
-from django.views.generic import FormView, TemplateView, RedirectView, ListView
-from django.shortcuts import render, redirect
+from django.views.generic import FormView, TemplateView, RedirectView, ListView, CreateView
+from django.shortcuts import render, redirect, render_to_response
+from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse, reverse_lazy
 # Authentication imports
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm	
 from django.db.models import Q
-from .models import Perfil
+from .forms import UploadFileForm
 from django.utils.translation import gettext as _
 
 def register(request):
@@ -26,9 +28,9 @@ def register(request):
 			if form.is_valid():
 				current = form.save(commit=False)
 				current.save()
-				perfil = Perfil()
-				perfil.user = current
-				perfil.save()
+				User.UserProfile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+				User.UserProfile = current
+				User.UserProfile.save()
 
 				user = authenticate(username=request.POST["username"], password=request.POST["password1"])
 				login(request, user)
@@ -78,3 +80,32 @@ class UserListView(ListView):
 			qs = qs.filter(Q(username__contains=filter_name) | Q(first_name__contains=filter_name) | Q(last_name__contains=filter_name))
 		return qs
 
+@login_required
+def user_profile(request):
+	if request.method == 'POST':
+		form = UserProfileForm(request.POST, request.FILES,instance=request.user.profile)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('home'))
+
+
+	else:
+		user = request.user
+		profile = user.profile
+		form = UserProfileForm(instance=profile) 
+
+	args = {}
+	args.update(csrf(request))
+
+	args['form'] = form
+
+	return render_to_response('profile.html')
+
+class ImageForm(CreateView):
+	form_class = UploadFileForm
+	success_url = '/'
+	template_name = "profile.html"
+
+	def ImageForm_Valid(self, form):
+		form.instance.user = self.request.user
+		return super(ImageForm, self).form_valid(form)

@@ -152,8 +152,8 @@ WSGI_APPLICATION = 'stackblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
+        'NAME': 'stackblog',
+        'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from .models import UserProfile
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
@@ -27,3 +28,10 @@ class RegisterForm(UserCreationForm):
 		user.last_name = self.cleaned_data["last_name"]
 		if commit:
 			user.save()
+
+
+
+class UploadFileForm(forms.ModelForm):
+    class Meta: 
+        model = UserProfile
+        fields = ('image',)
