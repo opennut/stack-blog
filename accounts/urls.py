@@ -15,8 +15,9 @@ urlpatterns = [
         name="password_change"),
     url(r'^users/$', views.UserListView.as_view(), name="users_list"),
     url(r'^', include('allauth.urls')),
-    url(r'^profile/(?P<id>\d+)/$', views.profile, name="profile"),
-    url(r'^editprofile/(?P<pk>\d+)/$', views.user_upprofile.as_view(), name="profileedit"),
+    url(r'^profile/(?P<id>\d+)/$', views.profile.as_view(), name="profile"),
+    url(r'^editprofile/$', views.user_upprofile.as_view(), name="profileedit"),
+    url(r'^editimage/(?P<id>\d+)/$', views.upload_file, name="imageedit"),
 
 
     

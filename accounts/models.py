@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 class UserProfile(models.Model):
     id = UUIDField(primary_key=True, verbose_name=_("Id"))
     user = models.OneToOneField(User, unique=True, blank=False, null=False, verbose_name=_("Usuario"), related_name='profile')
-    image = models.ImageField(upload_to='profile/', default="profile/opennut-default-img.png", null=True, blank=True, verbose_name=_("Actualzar Avatar"))
+    image = models.ImageField(upload_to='profile/', default="profile/opennut-default-img.png", null=True, blank=True, verbose_name=_("Avatar"))
     
     class Meta:
     	verbose_name = _("Perfil")

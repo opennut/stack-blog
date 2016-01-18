@@ -5,7 +5,7 @@ from .forms import RegisterForm
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 from django.views.generic import FormView, TemplateView, RedirectView, ListView, CreateView
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DetailView
 from django.shortcuts import render, redirect, render_to_response
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm	
 from django.db.models import Q
 from .forms import UploadFileForm
+from models import UserProfile
 from django.utils.translation import gettext as _
 
 def register(request):
@@ -81,35 +82,35 @@ class UserListView(ListView):
 			qs = qs.filter(Q(username__contains=filter_name) | Q(first_name__contains=filter_name) | Q(last_name__contains=filter_name))
 		return qs
 
-@login_required
-def user_profile(request):
-	if request.method == 'POST':
-		form = UserProfileForm(request.POST, request.FILES,instance=request.user.profile)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect(reverse('home'))
-
-
-	else:
-		user = request.user
-		profile = user.profile
-		form = UserProfileForm(instance=profile) 
-
-	args = {}
-	args.update(csrf(request))
-
-	args['form'] = form
-
-	return render_to_response('profile.html')
-
-def profile(request,id):
-	user = User.objects.get(pk=id)
-	return render_to_response('profile.html', {'user': user})
+class profile(DetailView):
+	model = User
+	slug_url_kwarg = "id"
+	slug_field = "pk"
+	fields = ("id", "username", "email")
+	template_name = "profile.html"
+	context_object_name = "x"
 
 class user_upprofile(UpdateView):
     model = User
-    fields = ['email']
+    fields = ['username', 'email']
     template_name = 'editprofile.html'
+    success_url = '/'
 
     def get_object(self, queryset=None):
         return self.request.user
+
+def upload_file(request,id):
+
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+			current = form.save(commit=False)
+			current.user = request.user
+			current.user.profile.delete()
+			current.save()
+			return HttpResponseRedirect('/')
+
+    else:
+        form = UploadFileForm()
+    return render(request, 'editprofile.html', {'form': form})

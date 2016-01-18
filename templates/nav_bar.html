@@ -55,7 +55,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="{% url 'profile' user.id %}">{% trans "Perfil" %}</a></li>
 						<li><a href="{% url 'password_change' %}">{% trans "Cambiar Contraseña" %}</a></li>
-						<li><a href="#">{% trans "Actividad" %}</a></li>
+						<li><a href="{% url 'profileedit' %}">{% trans "Editar Perfil" %}</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="{% url 'logout' %}">{% trans "Salir" %}</a></li>
 					</ul>

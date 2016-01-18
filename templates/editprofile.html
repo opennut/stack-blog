@@ -1,20 +1,61 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+% load staticfiles %}
 {% load i18n %}
-
+{% load static %}
 {% block container %}
-<div class="col-sm-3"></div>
 
-<form action="" class="col-sm-6" method="post">
-	<h4>{% trans "Registro de Usuario" %}</h4>
+<div class="col-sm-10">
+
+	
+	<h1 style = "margin-left: 150px;">{% trans "Edicion de Usuario" %}</h1>
+	<div class='wrapper col-xs-6' style="margin-top: 10px; margin-left: 130px;">
+		<img alt="" style="height: 280; max-width:300; margin-left: 30px;" src="{% get_media_prefix %}{{request.user.profile.image}}">
+		<a href="{% url 'imageedit' request.user.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	</div>
+
+
+
+
+<div  style = "margin-left: 140px;">
+<form action="" class="col-sm-10" method="post" enctype="multipart/form-data">
+	
 	<hr>
 	{% csrf_token %}
 	{{ form|crispy }}
-	<input type="submit" class="btn btn-primary" value="{% trans "Crear Cuenta" %}">
+	<input type="submit" class="btn btn-primary btn-block" value="{% trans "Editar" %}">
 
 </form>
+</div>
+</div>
+<script>
+function validateMail(idMail)
+{
+	object=document.getElementById(id_email);
+	valueForm=object.value;
+	var patron=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+
+	if(valueForm.search(patron)==0)
+	{
+		object.style.color="#000";
+		return;
+	}
+	object.style.color="#f00";
+}
+</script>
+
+<style type="text/css">
+.wrapper {
+position: relative;
+}
+
+.wrapper .glyphicon {
+	position: absolute;
+    margin-top: -20px;
+    margin-left: 335px; 
+}
+</style>
 
 {% load socialaccount %}
-<a href="{% provider_login_url "facebook" method="js_sdk" %}">Facebook Connect</a>
 
 {% endblock %}
