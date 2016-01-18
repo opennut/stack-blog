@@ -106,7 +106,7 @@
 					<a href=""><img class="/*img-circle*/" style="max-width:50; height:50px;" src="{% get_media_prefix %}{{question.user.profile.image}}" alt=""></a>
 				</div>
 				<div class="media-body">
-					<a href="">{{question.user.username}}</a>
+					<a href="{% url 'profile' question.user.id %}">{{question.user.username}}</a>
 					<br>
 					{{question.user.question_set.count}} {% trans "Preguntas" %}
 				</div>
@@ -137,7 +137,7 @@
 					<a href=""><img class="/*img-circle*/" style="max-width:50; height:50px;" src="{% get_media_prefix %}{{current.user.profile.image}}" alt=""></a>
 				</div>
 				<div class="media-body">
-					<a href="">{{current.user.username}}</a>
+					<a href="{% url 'profile' current.user.id %}">{{current.user.username}}</a>
 					<br>
 					{{current.user.question_set.count}} {% trans "Preguntas" %}
 				</div>

@@ -30,7 +30,6 @@ class RegisterForm(UserCreationForm):
 			user.save()
 
 
-
 class UploadFileForm(forms.ModelForm):
     class Meta: 
         model = UserProfile

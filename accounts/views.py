@@ -5,6 +5,7 @@ from .forms import RegisterForm
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 from django.views.generic import FormView, TemplateView, RedirectView, ListView, CreateView
+from django.views.generic import UpdateView
 from django.shortcuts import render, redirect, render_to_response
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -101,11 +102,14 @@ def user_profile(request):
 
 	return render_to_response('profile.html')
 
-class ImageForm(CreateView):
-	form_class = UploadFileForm
-	success_url = '/'
-	template_name = "profile.html"
+def profile(request,id):
+	user = User.objects.get(pk=id)
+	return render_to_response('profile.html', {'user': user})
 
-	def ImageForm_Valid(self, form):
-		form.instance.user = self.request.user
-		return super(ImageForm, self).form_valid(form)
+class user_upprofile(UpdateView):
+    model = User
+    fields = ['email']
+    template_name = 'editprofile.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user

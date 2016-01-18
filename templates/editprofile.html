@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block container %}
+<div class="col-sm-3"></div>
+
+<form action="" class="col-sm-6" method="post">
+	<h4>{% trans "Registro de Usuario" %}</h4>
+	<hr>
+	{% csrf_token %}
+	{{ form|crispy }}
+	<input type="submit" class="btn btn-primary" value="{% trans "Crear Cuenta" %}">
+
+</form>
+
+{% load socialaccount %}
+<a href="{% provider_login_url "facebook" method="js_sdk" %}">Facebook Connect</a>
+
+{% endblock %}

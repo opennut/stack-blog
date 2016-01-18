@@ -7,19 +7,15 @@
 
  
 
- 	<div class='row' style="margin-top: 20px; margin-bottom: 20px;">
+ 	<div class='row' style="margin-top: 20px;">
  		<div class=''>
-	  		<div class='col-xs-6'>
-					<img alt="" style="height: 230; max-width:250; margin-left: 55px;" src="{% get_media_prefix %}{{user.profile.image}}">
-				<div class="alert alert-success" role="alert" style="margin-top: 10px;">
-					<h4>
-						{% trans "E-mail: " %}{{user.email}}
-					</h4>
-				</div>
+	  		<div class='col-xs-6' style="margin-top: 25px;">
+					<img alt="" style="height: 280; max-width:300; margin-left: 30px;" src="{% get_media_prefix %}{{user.profile.image}}">
+				
 			</div>
 			<div class='col-xs-6'>
 				<div class='jumbotron'>
-					<h1> {{request.user}} </h1>
+					<h1> {{user.username}} </h1>
 					<div class="media-body">
 						<FONT SIZE=4>
 						<h3>Actividad de usuario:</h3>
@@ -28,6 +24,11 @@
 						{% trans "Respuestas: " %} {{user.answer_set.count}} 
 						</FONT>
 					</div>
+					<div  style="margin-top: 10px;">
+						<h4>
+							{{user.email}}
+						</h4>
+				</div>
 				</div>
 			</div>
 		</div>

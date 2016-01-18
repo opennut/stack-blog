@@ -55,7 +55,7 @@
 				<a href=""><img class="/*img-circle*/" style="max-width:50; height:50px;" src="{% get_media_prefix %}{{current_user.profile.image}}" alt=""></a>
 			</div>
 			<div class="media-body">
-				<a href="">{{current_user.username}}</a>
+				<a href="{% url 'profile' current_user.id %}">{{current_user.username}}</a>
 				<br>
 				{{current_user.question_set.count}} {% trans "Preguntas" %}
 			</div>
