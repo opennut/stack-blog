@@ -13,6 +13,7 @@ class Question(models.Model):
 	description = MarkupField(default_markup_type="markdown", blank=False, null=False, verbose_name=_('Descripcion'))
 	tags = models.ManyToManyField(Tag,)
 	views = models.IntegerField(default=0)
+	voted = models.IntegerField(default=0)
 	estatus = models.BooleanField(blank=False, null=False, default=True)
 
 	class Meta:
@@ -37,3 +38,8 @@ class Answer(models.Model):
 	class Meta:
 		verbose_name = _("Respuesta")
 		verbose_name_plural = _('Respuestas')
+
+
+class Vote_Question(models.Model):
+	user = models.ForeignKey(User, blank=False, null=False, verbose_name=_("Usuario"))
+	question = models.ForeignKey(Question, blank=False, null=False, verbose_name=_("Pregunta"))

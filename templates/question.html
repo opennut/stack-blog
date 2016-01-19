@@ -46,6 +46,15 @@
 				<th style="border:none; color:gray; font-weight:normal;">{% trans "Visitas" %}</th>
 				<td style="border:none;">{{question.views}}</td>
 			</tr>
+			<tr>
+				<th style="border:none; color:gray; font-weight:normal;">{% trans "Votos" %}</th>
+				<td style="border:none;">
+					<a href="voteng"><span class="glyphicon glyphicon-minus"></span></a>
+						{{question.voted}}
+					<a href="voteps"><span class="glyphicon glyphicon-plus"></span></a>
+				</td>
+
+			</tr>
 		</tbody>
 	</table>
 </div>

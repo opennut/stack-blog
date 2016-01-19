@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
-from questions.models import Question, Answer
+from questions.models import Question, Answer, Vote_Question
 from django.views.generic import DetailView, CreateView, FormView
 from django.contrib.auth.models import User
 from questions.forms import AnsForm
@@ -65,3 +65,32 @@ class QuestionCreateView(CreateView):
 		form.instance.user = self.request.user
 		form.instance.date = datetime.datetime.now()
 		return super(QuestionCreateView, self).form_valid(form)
+
+
+def votating_pos(request, id):
+	user = request.user
+	y = Question.objects.get(pk=id)
+	c= Vote_Question.objects.filter(user=user, question=y)
+	if(c.count()>0):
+		print "nice try"
+	else:
+		y.voted += 1
+		x = Vote_Question(user = user, question = y)
+		y.save()
+		x.save()
+	return HttpResponseRedirect(reverse("question_detail", args={ y.title }))
+
+
+def votating_neg(request, id):
+	user = request.user
+	print user.id
+	y = Question.objects.get(pk=id)
+	c= Vote_Question.objects.filter(user=user, question=y)
+	if(c.count()>0):
+		print "nice try"
+	else:
+		y.voted -= 1
+		x = Vote_Question(user = user, question = y)
+		y.save()
+		x.save()
+	return HttpResponseRedirect(reverse("question_detail", args={ y.title }))
