@@ -113,3 +113,19 @@ def resp_optima (request, id):
 		answer.save()
 
 	return HttpResponseRedirect(reverse("question_detail", args={ question.id }))
+
+
+def elm_pregunta(request, id):
+	user = request.user
+	question = Question.objects.get(pk=id)
+	if (question.user == user):
+		question.delete()
+	return HttpResponseRedirect(reverse('home'))
+
+def elm_respuesta(request, id):
+	user = request.user
+	answer = Answer.objects.get(pk = id)
+	question = answer.question
+	if (answer.user == user):
+		answer.delete()
+	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
