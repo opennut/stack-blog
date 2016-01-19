@@ -11,12 +11,10 @@
  		<div class=''>
 	  		<div class='wrapper col-xs-6' style="margin-top: 25px;">
 					<img alt="" style="height: 280; max-width:300; margin-left: 30px;" src="{% get_media_prefix %}{{x.profile.image}}">
-
-				<a href="{% url 'imageedit' x.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
 			</div>
 			<div class='col-xs-6'>
 				<div class='jumbotron'>
-					<h1> {{x.username}} </h1>
+					<h1 style="word-wrap: break-word; font-size: 350%;"> {{x.username}} </h1>
 					<div class="media-body">
 						<FONT SIZE=4>
 						<h3>Actividad de usuario:</h3>
@@ -73,21 +71,7 @@
  {% endfor %}
 
 
- <style>
 
-.wrapper {
-position: relative;
-}
-
-.wrapper .glyphicon {
-	position: absolute;
-    margin-top: -20px;
-    margin-left: -4px; 
-}
-
-
-
- </style>
  {% endblock %}
 
 

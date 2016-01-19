@@ -47,9 +47,9 @@
 				<!-- User MENU -->
 				<li class="dropdown">
 					
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<a href="#" class="contenido dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						<img alt="" style="height: 18px; max-width:20px;" src="{% get_media_prefix %}{{user.profile.image}}" class="circle">
-						{{request.user}} 
+						{{request.user}}
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
@@ -74,4 +74,17 @@
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
+
+<style>
+
+.contenido {
+	width:80%;
+	width: 130px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+</style>
 </nav>
+
