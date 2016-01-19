@@ -33,7 +33,7 @@ class Answer(models.Model):
 	question = models.ForeignKey(Question, blank=False, null=False, verbose_name=_("Pregunta"))
 	date = models.DateTimeField(blank=False, null=False, verbose_name=_('Fecha'), auto_now=True)
 	description = MarkupField(default_markup_type="markdown", blank=False, null=False, verbose_name=_('Descripcion'))
-	flag = models.BooleanField(blank=False, null=False, default=True)
+	flag = models.BooleanField(blank=False, null=False, default=False)
 
 	class Meta:
 		verbose_name = _("Respuesta")

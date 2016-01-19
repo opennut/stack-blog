@@ -94,3 +94,22 @@ def votating_neg(request, id):
 		y.save()
 		x.save()
 	return HttpResponseRedirect(reverse("question_detail", args={ y.title }))
+
+
+def resp_optima (request, id):
+	answer = Answer.objects.get(pk=id)
+	question = answer.question
+	user = request.user
+	if(question.user == user):
+		try:
+			x = Answer.objects.get(question = question, flag = True)
+			x.flag = False
+			x.save()
+
+		except Answer.DoesNotExist:
+			x = None  
+
+		answer.flag = True
+		answer.save()
+
+	return HttpResponseRedirect(reverse("question_detail", args={ question.id }))

@@ -136,9 +136,33 @@
 		<p class="/*lead*/">{{ current.description}}</p>
 		
 	</div>
+	{% if current.flag == 1 %}
+
+	<span class="glyphicon glyphicon-star"></span>
+
+	<style>
+	.glyphicon.glyphicon-star{
+
+		color: green;
+		font-size: 30px;
+	}
+
+	</style>
+
+	{% endif %}
 
 	<div class="col-xs-12">
 		<div class="col-xs-7">
+
+			{% if question.user == request.user %}
+			<div>
+				 <a type="button" class="btn btn-default" style = "margin-top: 32px;" href="{% url 'respuesta_optima' current.id %}">
+				  <span class="glyphicon glyphicon-king"> </span>
+				  	Mejor Respuesta
+				 </a>
+			</div>
+			{% endif %}
+
 		</div>
 		<div class="col-xs-5">
 			<div class="media" style="background-color:#fcfcfc; padding: 10px; border: 1px solid #f2f2f2;">
