@@ -7,6 +7,25 @@
 
  
 
+
+<div class='row'>
+
+	{% if request.user.is_superuser %}
+	
+	<div class="col-xs-4"></div>
+		 <ul class="pagination">
+		    <li><a href="{% url 'super_user' x.id %}"><span class = "glyphicon glyphicon-queen"></span>  Super User </a></li>
+		    <li><a href="{% url 'staff' x.id %}"> <span class = "glyphicon glyphicon-knight"></span>  Moderador </a></li>
+		    {% if x.is_active %}
+		    <li><a href="{% url 'inactive' x.id %}"> <span class = "glyphicon glyphicon-pawn"></span>  InActivo </a></li>
+		    {% else %}
+		    <li><a href="{% url 'active' x.id %}"> <span class = "glyphicon glyphicon-pawn"></span>  Activo </a></li>
+		    {% endif %}
+  		</ul>
+
+  	{% endif %}
+</div>
+
  	<div class='row' style="margin-top: 20px;">
  		<div class=''>
 	  		<div class='wrapper col-xs-6' style="margin-top: 25px;">
@@ -27,6 +46,7 @@
 						<h4>
 							{{x.email}}
 						</h4>
+
 				</div>
 				</div>
 
@@ -36,10 +56,28 @@
 
  <div class="row">
  	<div class='col-xs-6'>
-		<div class="alert alert-info" role="alert">
-			<h4>Preguntas por el usuario:</h4>
+		<div role="alert">
+			<h4  class="alert alert-info" >Preguntas por el usuario:</h4>
 		</div>
 	</div>
+				{% if request.user.is_superuser %}
+					<div class="col-xs-6">
+							{% if x.is_active %}
+								{% if x.is_staff %}
+									{% if x.is_superuser %}
+										<h4 class="alert alert-success"> Rol del usuario: Web Master</h4>
+									{% else %}
+										<h4 class="alert alert-success"> Rol del usuario: Moderador</h4>
+									{% endif %}
+								{% else %}
+									<h4 class="alert alert-success"> Rol del usuario: Usuario Activo</h4>
+								{% endif %}
+							{% else %}
+								<h4 class="alert alert-danger"> Usuario Inactivo </h4>
+							{% endif %}
+						</h4>
+					</div>
+				{% endif %}
 </div>
 
  	

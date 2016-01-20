@@ -114,3 +114,45 @@ def upload_file(request,id):
     else:
         form = UploadFileForm()
     return render(request, 'editprofile.html', {'form': form})
+
+def super_user(request, id):
+	user = request.user
+	x = User.objects.get(id = id)
+	if user.is_superuser:
+		x.is_active = True
+		x.is_staff = True
+		x.is_superuser = True
+		x.save()
+	return HttpResponseRedirect(reverse("profile", args={ x.id }))
+
+def staff(request, id):
+	user = request.user
+	x = User.objects.get(id = id)
+	if user.is_superuser:
+		x.is_active = True
+		x.is_staff = True
+		x.is_superuser = False
+		x.save()
+	return HttpResponseRedirect(reverse("profile", args={ x.id }))
+
+def active(request, id):
+	user = request.user
+	x = User.objects.get(id = id)
+	if user.is_superuser:
+		x.is_active = True
+		x.is_staff = False
+		x.is_superuser = False
+		x.save()
+	return HttpResponseRedirect(reverse("profile", args={ x.id }))
+
+def inactive(request, id):
+	user = request.user
+	x = User.objects.get(id = id)
+	if user.is_superuser:
+		x.is_active = False
+		x.is_staff = False
+		x.is_superuser = False
+		x.save()
+	return HttpResponseRedirect(reverse("profile", args={ x.id }))
+
+
