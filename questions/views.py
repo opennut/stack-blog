@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from questions.models import Question, Answer, Vote_Question
-from django.views.generic import DetailView, CreateView, FormView
+from django.views.generic import DetailView, CreateView, FormView, UpdateView
 from django.contrib.auth.models import User
 from questions.forms import AnsForm
 from django import forms
@@ -129,3 +129,20 @@ def elm_respuesta(request, id):
 	if (answer.user == user):
 		answer.delete()
 	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
+
+class update_question (UpdateView):
+	model = Question
+	fields = ['title', 'description', 'tags']
+	template_name = 'newquestion.html'
+	
+	def get_success_url(self):
+		return reverse('question_detail', kwargs={'id': self.object.pk})
+
+class update_answer (UpdateView):
+	model = Answer
+	fields = ['description']
+	template_name = 'newquestion.html'
+
+	def get_success_url(self):
+		return reverse('question_detail', kwargs={'id': self.object.question.pk})
+

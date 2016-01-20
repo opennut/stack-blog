@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import QuestionDetailView, QuestionCreateView, AnswerForm, save_answer, votating_pos, votating_neg, resp_optima, elm_pregunta, elm_respuesta
+from .views import QuestionDetailView, QuestionCreateView, AnswerForm, save_answer, votating_pos, votating_neg, resp_optima, elm_pregunta, elm_respuesta, update_question, update_answer
 from django.views.decorators.http import require_http_methods, require_POST
 
 urlpatterns = [
@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^(?P<id>[\w-]+)/voteng/$',votating_neg, name = 'vote_negative'),
     url(r'^opt/(?P<id>[\w-]+)/$',resp_optima, name = 'respuesta_optima'),
     url(r'^deletequestion/(?P<id>[\w-]+)/$',elm_pregunta, name = 'eliminar_pregunta'),
-    url(r'^deleteanswer/(?P<id>[\w-]+)/$',elm_respuesta, name = 'eliminar_respuesta')
-
+    url(r'^deleteanswer/(?P<id>[\w-]+)/$',elm_respuesta, name = 'eliminar_respuesta'),
+    url(r'^updatequestion/(?P<pk>[\w-]+)/$',update_question.as_view(), name = 'editar_pregunta'),
+    url(r'^updateanswer/(?P<pk>[\w-]+)/$',update_answer.as_view(), name = 'editar_respuesta')
+    
 ]

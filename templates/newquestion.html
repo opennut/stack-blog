@@ -12,14 +12,17 @@
 {% endblock %}
 
 {% block container %}
-
-<form action="" class="col-sm-12" method="post">
-	<h4>{% trans "¿Que deseas preguntar?" %}</h4>
-	<hr>
-	{% csrf_token %}
-	{{ form|crispy }}
-	<input type="submit" class="btn btn-primary" value="{% trans "Enviar Pregunta" %}">
-</form>
+{% if user.is_authenticated %}
+		<form action="" class="col-sm-12" method="post">
+			<h4>{% trans "¿Que deseas preguntar?" %}</h4>
+			<hr>
+			{% csrf_token %}
+			{{ form|crispy }}
+			<input type="submit" class="btn btn-primary" value="{% trans "Enviar Pregunta" %}">
+		</form>
+{% else %}
+		<h1>Usted no a iniciado sesion, por favor inicie sesion para editar contenido</h1>
+{% endif %}
 <script>
 	$("#id_description").markdown({autofocus:false,savable:false})
 </script>

@@ -119,7 +119,7 @@
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">			  	
-					    <li><a href="#"><span class="glyphicon glyphicon-pencil">  Editar</a></span></li>
+					    <li><a href="{% url 'editar_pregunta' question.id %}"><span class="glyphicon glyphicon-pencil">  Editar</a></span></li>
 					    <li><a href="{% url 'eliminar_pregunta' question.id %}"><span class="glyphicon glyphicon-erase">  Eliminar</span></a></li>
 					  </ul>
 					</div>
@@ -182,7 +182,7 @@
 			    <span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">			  	
-			    <li><a href="#"><span class="glyphicon glyphicon-pencil">  Editar</a></span></li>
+			    <li><a href="{% url 'editar_respuesta' current.id %}"<span class="glyphicon glyphicon-pencil">  Editar</a></span></li>
 			    <li><a href="{% url 'eliminar_respuesta' current.id %}"><span class="glyphicon glyphicon-erase">  Eliminar</span></a></li>
 			  </ul>
 			</div>
