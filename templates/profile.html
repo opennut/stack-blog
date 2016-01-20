@@ -16,11 +16,8 @@
 		 <ul class="pagination">
 		    <li><a href="{% url 'super_user' x.id %}"><span class = "glyphicon glyphicon-queen"></span>  Super User </a></li>
 		    <li><a href="{% url 'staff' x.id %}"> <span class = "glyphicon glyphicon-knight"></span>  Moderador </a></li>
-		    {% if x.is_active %}
+		    <li><a href="{% url 'active' x.id %}"> <span class = "glyphicon glyphicon-bishop"></span>  Activo </a></li>
 		    <li><a href="{% url 'inactive' x.id %}"> <span class = "glyphicon glyphicon-pawn"></span>  InActivo </a></li>
-		    {% else %}
-		    <li><a href="{% url 'active' x.id %}"> <span class = "glyphicon glyphicon-pawn"></span>  Activo </a></li>
-		    {% endif %}
   		</ul>
 
   	{% endif %}

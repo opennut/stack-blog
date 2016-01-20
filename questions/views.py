@@ -118,7 +118,7 @@ def resp_optima (request, id):
 def elm_pregunta(request, id):
 	user = request.user
 	question = Question.objects.get(pk=id)
-	if (question.user == user):
+	if (question.user == user or user.is_staff):
 		question.delete()
 	return HttpResponseRedirect(reverse('home'))
 
@@ -126,22 +126,24 @@ def elm_respuesta(request, id):
 	user = request.user
 	answer = Answer.objects.get(pk = id)
 	question = answer.question
-	if (answer.user == user):
+	if (answer.user == user or user.is_staff):
 		answer.delete()
 	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
 
 class update_question (UpdateView):
 	model = Question
+	context_object_name = "current"
 	fields = ['title', 'description', 'tags']
-	template_name = 'newquestion.html'
+	template_name = 'upquestion.html'
 	
 	def get_success_url(self):
 		return reverse('question_detail', kwargs={'id': self.object.pk})
 
 class update_answer (UpdateView):
 	model = Answer
+	context_object_name = "current"
 	fields = ['description']
-	template_name = 'newquestion.html'
+	template_name = 'upquestion.html'
 
 	def get_success_url(self):
 		return reverse('question_detail', kwargs={'id': self.object.question.pk})

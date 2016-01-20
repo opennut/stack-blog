@@ -95,7 +95,7 @@
 
 	<div class="col-xs-12">
 
-		{% if question.user == request.user %}
+		{% if question.user == request.user or user.is_staff %}
 					<div class="col-xs-1" style="margin-top: 15px">
 					<div class="dropdown ">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -128,10 +128,10 @@
 			</div>
 		</div>
 				
-		{% if question.user != request.user %}
+		{% if question.user != request.user or user.is_staff == 0 %}
 		<div class="col-xs-1"></div>
 		{% endif %}
-		
+
 		<div class="col-xs-6">
 			<div class="media" style="background-color:#fcfcfc; padding: 10px; border: 1px solid #f2f2f2;">
 				<div class="btn-group pull-left" style="margin-right: 15px;" role="group" aria-label="...">
@@ -177,7 +177,7 @@
 	<div class="col-xs-12">
 		
 
-			{% if current.user == request.user %}
+			{% if current.user == request.user or user.is_staff %}
 			<div class="col-xs-1">
 			<div class="dropdown " style = "margin-top: 32px;">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -204,7 +204,7 @@
 				</div>	
 			{% endif %}
 
-			{% if current.user != request.user %}
+			{% if current.user != request.user or user.is_staff == 0 %}
 				<div class="col-xs-1">
 				</div>	
 			{%  endif %}
