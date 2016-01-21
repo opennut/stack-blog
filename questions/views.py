@@ -78,7 +78,7 @@ def votating_pos(request, id):
 		x = Vote_Question(user = user, question = y)
 		y.save()
 		x.save()
-	return HttpResponseRedirect(reverse("question_detail", args={ y.title }))
+	return HttpResponseRedirect(reverse("question_detail", args={ y.id }))
 
 
 def votating_neg(request, id):
@@ -93,7 +93,7 @@ def votating_neg(request, id):
 		x = Vote_Question(user = user, question = y)
 		y.save()
 		x.save()
-	return HttpResponseRedirect(reverse("question_detail", args={ y.title }))
+	return HttpResponseRedirect(reverse("question_detail", args={ y.id }))
 
 
 def resp_optima (request, id):
@@ -128,7 +128,7 @@ def elm_respuesta(request, id):
 	question = answer.question
 	if (answer.user == user or user.is_staff):
 		answer.delete()
-	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
+	return HttpResponseRedirect(reverse("question_detail", args={ question.id }))
 
 class update_question (UpdateView):
 	model = Question
@@ -154,7 +154,7 @@ def cerrar_pregunta(request, id):
 	if (question.user == user or user.is_staff):
 		question.estatus = False
 		question.save()
-	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
+	return HttpResponseRedirect(reverse("question_detail", args={ question.id }))
 
 def abrir_pregunta(request, id):
 	user = request.user
@@ -162,4 +162,4 @@ def abrir_pregunta(request, id):
 	if (question.user == user or user.is_staff):
 		question.estatus = True
 		question.save()
-	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
+	return HttpResponseRedirect(reverse("question_detail", args={ question.id }))
