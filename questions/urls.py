@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from .views import QuestionDetailView, QuestionCreateView, AnswerForm, save_answer, votating_pos, votating_neg, resp_optima, elm_pregunta, elm_respuesta, update_question, update_answer
+from .views import QuestionDetailView, QuestionCreateView, AnswerForm, save_answer, votating_pos, votating_neg, cerrar_pregunta, abrir_pregunta, resp_optima, elm_pregunta, elm_respuesta, update_question, update_answer
 from django.views.decorators.http import require_http_methods, require_POST
 
 urlpatterns = [
@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^deletequestion/(?P<id>[\w-]+)/$',elm_pregunta, name = 'eliminar_pregunta'),
     url(r'^deleteanswer/(?P<id>[\w-]+)/$',elm_respuesta, name = 'eliminar_respuesta'),
     url(r'^updatequestion/(?P<pk>[\w-]+)/$',update_question.as_view(), name = 'editar_pregunta'),
-    url(r'^updateanswer/(?P<pk>[\w-]+)/$',update_answer.as_view(), name = 'editar_respuesta')
+    url(r'^updateanswer/(?P<pk>[\w-]+)/$',update_answer.as_view(), name = 'editar_respuesta'),
+    url(r'^openquestion/(?P<id>[\w-]+)/$',abrir_pregunta, name = 'abrir_pregunta'),
+    url(r'^closequestion/(?P<id>[\w-]+)/$',cerrar_pregunta, name = 'cerrar_pregunta'),
     
 ]

@@ -148,3 +148,18 @@ class update_answer (UpdateView):
 	def get_success_url(self):
 		return reverse('question_detail', kwargs={'id': self.object.question.pk})
 
+def cerrar_pregunta(request, id):
+	user = request.user
+	question = Question.objects.get(pk=id)
+	if (question.user == user or user.is_staff):
+		question.estatus = False
+		question.save()
+	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
+
+def abrir_pregunta(request, id):
+	user = request.user
+	question = Question.objects.get(pk=id)
+	if (question.user == user or user.is_staff):
+		question.estatus = True
+		question.save()
+	return HttpResponseRedirect(reverse("question_detail", args={ question.title }))
