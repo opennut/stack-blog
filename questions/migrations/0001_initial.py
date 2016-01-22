@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField(auto_now=True, verbose_name=b'Fecha')),
                 ('description', markupfield.fields.MarkupField(rendered_field=True, verbose_name=b'Descripcion')),
                 ('description_markup_type', models.CharField(default=b'markdown', max_length=30, choices=[(b'', b'--'), (b'markdown', b'markdown')])),
-                ('flag', models.BooleanField(default=True)),
+                ('flag', models.BooleanField(default=False)),
                 ('_description_rendered', models.TextField(editable=False)),
             ],
             options={
