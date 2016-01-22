@@ -17,58 +17,55 @@ from django.db.models import Q
 from .forms import UploadFileForm
 from models import UserProfile
 from django.utils.translation import gettext as _
+from allauth.account.utils import complete_signup
+from allauth.account import app_settings
+from allauth.account.forms import LoginForm
+
 
 def register(request):
-	if request.method == 'POST':
-		form = RegisterForm(request.POST)
-		print request.POST
-		
-		x_user = User.objects.filter(email=request.POST["email"])
-		if x_user.count() > 0:
-			form.add_error('email', _('Este email ya existe'))
-		else:
-			if form.is_valid():
-				current = form.save(commit=False)
-				current.save()
-				User.UserProfile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
-				User.UserProfile = current
-				User.UserProfile.save()
-
-				user = authenticate(username=request.POST["username"], password=request.POST["password1"])
-				login(request, user)
-
-				return HttpResponseRedirect(reverse('home'))
+	if request.user.is_authenticated():
+		return HttpResponseRedirect(reverse("home"))
 	else:
-		form = RegisterForm()
-	return render(
-		request, 
-		'register.html',
-			{
-				"form": form
-			}
-		)
+		if request.method == 'POST':
+			form = RegisterForm(request.POST)
+			print request.POST
+			
+			x_user = User.objects.filter(email=request.POST["email"])
+			if x_user.count() > 0:
+				form.add_error('email', _('Este email ya existe'))
+			else:
+				if form.is_valid():
+					current = form.save(commit=False)
+					current.save()
+					perfil = UserProfile()
+					perfil.user = current
+					perfil.save() 
+
+
+					complete_signup(request, current,app_settings.EMAIL_VERIFICATION, "/")
+					return HttpResponseRedirect(reverse("registered"))
+
+
+		else:
+			form = RegisterForm()
+		return render(
+			request, 
+			'register.html',
+				{
+					"form": form
+				}
+			)
 
 def logout_on(request):
 	logout(request)
 	return HttpResponseRedirect(reverse("home"))
-
+'''
 class LoginView(FormView):
-    form_class = AuthenticationForm
+    form_class = LoginForm
     template_name = "login.html"
     success_url =  reverse_lazy("login")
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('home'))
-        else:
-            return super(LoginView, self).dispatch(request, *args, **kwargs)
-            return HttpResponse(_("Tu usuario y tu contrasena no concuerdan"))
-
-    def form_valid(self, form):
-        login(self.request, form.get_user())
-        return super(LoginView, self).form_valid(form)
-
-
+'''
 class UserListView(ListView):
 	model = User
 	template_name = "users.html"
@@ -92,7 +89,7 @@ class profile(DetailView):
 
 class user_upprofile(UpdateView):
     model = User
-    fields = ['username', 'email']
+    fields = ['username']
     template_name = 'editprofile.html'
     success_url = '/'
 
@@ -155,4 +152,7 @@ def inactive(request, id):
 		x.save()
 	return HttpResponseRedirect(reverse("profile", args={ x.id }))
 
+	
+def registered(request):
+	return render(request, 'registered.html')
 

@@ -21,7 +21,6 @@ from django.utils.translation import gettext as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -74,12 +73,8 @@ INSTALLED_APPS = (
 
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST=''
-EMAIL_PORT=0
-EMAIL_HOST_USER=''
-EMAIL_HOST_PASSWORD=''
-EMAIL_USE_TLS=True
+
+
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -237,3 +232,18 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+LOGIN_REDIRECT_URL = "home"
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'mario.lopez.cuevas@gmail.com'
+EMAIL_HOST_PASSWORD = 'estomecaemal'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = ("username")
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
+

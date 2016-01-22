@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^register/$', views.register, name="register"),
-    url(r'^login/$', views.LoginView.as_view(), name="login"),
+    #url(r'^login/$', views.LoginView.as_view(), name="login"),
     url(r'^logout/$', views.logout_on, name="logout"),
     url(r'^password_change/$', 'django.contrib.auth.views.password_change', 
     	{'template_name': 'changepassword.html',
@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^profile/staff/(?P<id>\d+)/$', views.staff, name="staff"),
     url(r'^profile/active/(?P<id>\d+)/$', views.active, name="active"),
     url(r'^profile/inactive/(?P<id>\d+)/$', views.inactive, name="inactive"),
+    url(r'^registered/$', views.registered, name="registered"),
 
     
 ]
