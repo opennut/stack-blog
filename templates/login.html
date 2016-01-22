@@ -8,7 +8,7 @@
 
 <div class="omb_login">
 	<h3 class="omb_authTitle">{{ request.site.name }}</h3>
-	<h3 class="omb_authTitle">{% trans "Iniciar Sesion" %} {% trans "ó" %} <a href="">Registrarse</a></h3>
+	<h3 class="omb_authTitle">{% trans "Iniciar Sesion" %} {% trans "ó" %} <a href="{% url 'register' %}">Registrarse</a></h3>
 	<div class="row omb_row-sm-offset-3 omb_socialButtons">
 		<div class="col-xs-4 col-sm-2">
 			<a href="{% provider_login_url "facebook" method="oauth2" %}" class="btn btn-lg btn-block omb_btn-facebook">
