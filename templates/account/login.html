@@ -42,7 +42,7 @@
 			<form class="omb_loginForm" method="POST" role="form">
 				{% csrf_token %}
 
-				{{form}}
+				{{ form|crispy }}
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Entrar" %}</button>
 			</form>

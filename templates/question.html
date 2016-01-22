@@ -261,6 +261,7 @@
 
 {% for current in question.answer_set.all %}
 
+{% if current.flag == 0 %}
 <hr>
 
 <div class="row">
@@ -323,7 +324,7 @@
 	</div>
 	
 </div>
-
+{%  endif %}
 {% endfor %}
 
 
