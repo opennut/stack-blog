@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from .forms import RegisterForm
 from django.core.context_processors import csrf
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.views.generic import FormView, TemplateView, RedirectView, ListView, CreateView
 from django.views.generic import UpdateView, DetailView
 from django.shortcuts import render, redirect, render_to_response
@@ -89,7 +89,7 @@ class profile(DetailView):
 
 class user_upprofile(UpdateView):
     model = User
-    fields = ['username']
+    fields = ['username','first_name','last_name']
     template_name = 'editprofile.html'
     success_url = '/'
 
@@ -112,43 +112,33 @@ def upload_file(request,id):
         form = UploadFileForm()
     return render(request, 'editprofile.html', {'form': form})
 
-def super_user(request, id):
-	user = request.user
-	x = User.objects.get(id = id)
-	if user.is_superuser:
-		x.is_active = True
-		x.is_staff = True
-		x.is_superuser = True
-		x.save()
-	return HttpResponseRedirect(reverse("profile", args={ x.id }))
 
 def staff(request, id):
 	user = request.user
 	x = User.objects.get(id = id)
-	if user.is_superuser:
+	group = Group.objects.get(name="moderadores")
+	if user.is_superuser and user != x and not x.is_superuser:
 		x.is_active = True
+		x.groups.add(group)
 		x.is_staff = True
-		x.is_superuser = False
 		x.save()
 	return HttpResponseRedirect(reverse("profile", args={ x.id }))
 
 def active(request, id):
 	user = request.user
 	x = User.objects.get(id = id)
-	if user.is_superuser:
+	if user.is_superuser and user != x and not x.is_superuser:
 		x.is_active = True
 		x.is_staff = False
-		x.is_superuser = False
 		x.save()
 	return HttpResponseRedirect(reverse("profile", args={ x.id }))
 
 def inactive(request, id):
 	user = request.user
 	x = User.objects.get(id = id)
-	if user.is_superuser:
+	if user.is_superuser and user != x and not x.is_superuser:
 		x.is_active = False
 		x.is_staff = False
-		x.is_superuser = False
 		x.save()
 	return HttpResponseRedirect(reverse("profile", args={ x.id }))
 

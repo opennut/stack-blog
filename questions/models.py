@@ -39,6 +39,9 @@ class Answer(models.Model):
 		verbose_name = _("Respuesta")
 		verbose_name_plural = _('Respuestas')
 
+	def __unicode__(self):
+		return self.question.title
+
 
 class Vote_Question(models.Model):
 	user = models.ForeignKey(User, blank=False, null=False, verbose_name=_("Usuario"))
