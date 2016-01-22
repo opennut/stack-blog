@@ -48,6 +48,4 @@ python manage.py runserver
 
 Si no hay nada mal con su configuración, el servidor de desarrollador Django empezar, lo que le permite visitar `127.0.0.1:8000` en tu navegador y ver la (incompleta) Índice foro.
 
-
-
-
+...
