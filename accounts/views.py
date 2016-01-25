@@ -28,7 +28,6 @@ def register(request):
 	else:
 		if request.method == 'POST':
 			form = RegisterForm(request.POST)
-			print request.POST
 			
 			x_user = User.objects.filter(email=request.POST["email"])
 			if x_user.count() > 0:
@@ -146,3 +145,5 @@ def inactive(request, id):
 def registered(request):
 	return render(request, 'registered.html')
 
+def redirect(request):
+	return HttpResponseRedirect(reverse("home"))

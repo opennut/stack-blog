@@ -1,20 +1,54 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% load i18n %}
+{% extends 'base_clean.html' %}
 
 {% block container %}
-<div class="col-sm-3"></div>
-
-<form action="" class="col-sm-6" method="post">
-	<h4>{% trans "Registro de Usuario" %}</h4>
-	<hr>
-	{% csrf_token %}
-	{{ form|crispy }}
-	<input type="submit" class="btn btn-primary" value="{% trans "Crear Cuenta" %}">
-
-</form>
-
+{% load crispy_forms_tags %}
+{% load i18n %}
 {% load socialaccount %}
-<a href="{% provider_login_url "facebook" method="js_sdk" %}">Facebook Connect</a>
+
+
+<div class="omb_login">
+	<h3 class="omb_authTitle">{{ request.site.name }}</h3>
+	<h3 class="omb_authTitle">{% trans "Registrarse" %} {% trans "ó" %} <a href="{% url 'account_login' %}">Iniciar sesion</a></h3>
+	<div class="row omb_row-sm-offset-3 omb_socialButtons">
+		<div class="col-xs-4 col-sm-2">
+			<a href="{% provider_login_url "facebook" method="oauth2" %}" class="btn btn-lg btn-block omb_btn-facebook">
+				<i class="fa fa-facebook visible-xs"></i>
+				<span class="hidden-xs">Facebook</span>
+			</a>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<a href="{% provider_login_url "twitter" %}" class="btn btn-lg btn-block omb_btn-twitter">
+				<i class="fa fa-twitter visible-xs"></i>
+				<span class="hidden-xs">Twitter</span>
+			</a>
+		</div>	
+		<div class="col-xs-4 col-sm-2">
+			<a href="{% provider_login_url "google" method="oauth2" %}" class="btn btn-lg btn-block omb_btn-google">
+				<i class="fa fa-google-plus visible-xs"></i>
+				<span class="hidden-xs">Google+</span>
+			</a>
+		</div>	
+	</div>
+
+	<div class="row omb_row-sm-offset-3 omb_loginOr">
+		<div class="col-xs-12 col-sm-6">
+			<hr class="omb_hrOr">
+			<span class="omb_spanOr">{% trans "ó" %}</span>
+		</div>
+	</div>
+
+	<div class="row omb_row-sm-offset-3">
+		<div class="col-xs-12 col-sm-6">
+			<form class="omb_loginForm" method="POST" role="form">
+				{% csrf_token %}
+
+				{{ form|crispy }}
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Entrar" %}</button>
+			</form>
+		</div>
+	</div>
+</div>
+
 
 {% endblock %}

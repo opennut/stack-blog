@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views
+from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
 admin.autodiscover()
@@ -10,9 +11,14 @@ urlpatterns = [
     #url(r'^login/$', views.LoginView.as_view(), name="login"),
     url(r'^logout/$', views.logout_on, name="logout"),
     url(r'^password_change/$', 'django.contrib.auth.views.password_change', 
-    	{'template_name': 'changepassword.html',
+        {'template_name': 'changepassword.html',
         'post_change_redirect' : 'home'}, 
         name="password_change"),
+    url(r'^password_change_socialuser/$', 'django.contrib.auth.views.password_change', 
+        {'password_change_form': AdminPasswordChangeForm,
+        'template_name': 'changepassword_social.html',
+        'post_change_redirect' : 'home'}, 
+        name="password_change_social"),
     url(r'^users/$', views.UserListView.as_view(), name="users_list"),
     url(r'^', include('allauth.urls')),
     url(r'^profile/(?P<id>\d+)/$', views.profile.as_view(), name="profile"),
@@ -22,6 +28,6 @@ urlpatterns = [
     url(r'^profile/active/(?P<id>\d+)/$', views.active, name="active"),
     url(r'^profile/inactive/(?P<id>\d+)/$', views.inactive, name="inactive"),
     url(r'^registered/$', views.registered, name="registered"),
-
+    url(r'^google/login/callback/$',views.redirect, name="redirect")
     
 ]
