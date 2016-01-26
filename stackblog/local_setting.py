@@ -6,10 +6,29 @@ DATABASES = {
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
-        'PORT': '3306',
+        'PORT': '',
     }
 }
 
 
+SOCIALACCOUNT_AUTO_SIGNUP = True
+ACCOUNT_UNIQUE_EMAIL = True
 
+LOGIN_REDIRECT_URL = "home"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
+ACCOUNT_UNIQUE_EMAIL = True
+
+# EMAIL SETTINGS
+EMAIL_HOST = ""
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+# Controls whether a secure connection is used.
+EMAIL_USE_TLS = True 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+ACCOUNT_AUTHENTICATION_METHOD = ("username_email")
 

@@ -144,18 +144,6 @@ WSGI_APPLICATION = 'stackblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'stackblog',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -224,29 +212,11 @@ SOCIALACCOUNT_PROVIDERS = \
         'VERSION': 'v2.4'}}
 
 
-SOCIALACCOUNT_AUTO_SIGNUP = True
-ACCOUNT_UNIQUE_EMAIL = True
 
 
 try:
-    from local_settings import *
+    from local_setting import *
 except ImportError:
     pass
 
-LOGIN_REDIRECT_URL = "home"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
-ACCOUNT_UNIQUE_EMAIL = True
 
-# EMAIL SETTINGS
-EMAIL_HOST = ""
-EMAIL_PORT = "587"
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-# Controls whether a secure connection is used.
-EMAIL_USE_TLS = True 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-ACCOUNT_AUTHENTICATION_METHOD = ("username_email")
