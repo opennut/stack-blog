@@ -49,16 +49,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-1 col-sm-4"></div>
-		<div class="col-xs-11 col-sm-2">
-			<label class="checkbox">
-				<input type="checkbox" value="remember-me">{% trans "Recordarme" %}
-			</label>
-		</div>
-		<div class="col-xs-1 col-sm-4 pull-right"></div>
-		<div class="col-xs-10 col-sm-2 pull-right">
+
+		<div class="col-xs-9">
 			<p class="omb_forgotPwd">
-				<a href="#">{% trans "Olvidé mi contraseña" %}</a>
+				<a href="{% url 'account_reset_password' %}">{% trans "Olvidé mi contraseña" %}</a>
 			</p>
 		</div>
 
