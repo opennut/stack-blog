@@ -20,3 +20,6 @@ class HomeListQuestions(ListView):
 			qs = qs.filter(Q(title__contains=filter_name) | Q(description__contains=filter_name))
 		qs = qs.order_by("-date")
 		return qs
+
+def donate(request):
+	return render(request, 'donate.html')

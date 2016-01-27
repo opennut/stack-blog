@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+% load staticfiles %}
+{% load i18n %}
+{% load static %}
+{% block container %}
+
+
+<div clas="row">
+
+	<h1>Apoya a StackBlog</h1>
+
+	<div class="jumbotron">
+
+	<p>Por favor apoya con una donacion de Bitcoins a los desarrolladores de Stackblog para que puedan seguir dando mantenimiento y mejoras al sistema te estaremos muy agradecidos por tu apoyo.</p>
+
+	</div>
+	<div class="jumbotron">
+		<h3>QR y numero de cartera de stackblog:</h3>
+	</div>
+			<div class="col-xs-6 col-xs-push-4">
+				<img src="https://chart.googleapis.com/chart?chs=240x240&choe=UTF-8&chld=M|0&cht=qr&chl=3NCUSgmN1dbyYeQ8V41L55zFXzU2RMFsVz" style="margin-top: 25px; margin-bottom: 25px;">
+			</div>
+		<div class="col-xs-8 col-xs-push-3">
+			<h3>Bit coin wallet number: 3NCUSgmN1dbyYeQ8V41L55zFXzU2RMFsVz</h3>
+		</div>
+</div>
+{% endblock %}

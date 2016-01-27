@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{% static "css/style.css" %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://blockchain.info/Resources/wallet/pay-now-button.js"></script>
 
   {% block other_lib_head %}
   {% endblock %}
@@ -48,11 +50,15 @@
 
 
       </div><!-- /.blog-main -->
+      
       <div class="col-sm-3 blog-sidebar">
         {% block info_sidebar_top %}
         {% endblock %}
         <div class="sidebar-module" style="background-color: #fffae8; padding: 10px; border: 1px solid #e8daab;">
           <h5>{% trans "Publicidad" %}</h5>
+        </div>
+          <div class="sidebar-module" style="padding: 10px; margin-top: 25px;">
+          <a class="btn btn-default"href="{% url 'donate' %}" style="margin-left: 40px;"><span class="glyphicon glyphicon-heart"></span>{% trans "Apoyar a stackblog" %}<span class="glyphicon glyphicon-heart"></span></a>
         </div>
         <br>
         {% load tag_side_bar_tags  %}
