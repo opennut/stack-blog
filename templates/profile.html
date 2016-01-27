@@ -38,10 +38,11 @@
 						</FONT>
 					</div>
 					<div  style="margin-top: 10px;">
+						{% if user.is_authenticated%}
 						<h4>
 							{{x.email}}
 						</h4>
-
+						{% endif %}
 				</div>
 				</div>
 

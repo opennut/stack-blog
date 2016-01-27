@@ -2,8 +2,8 @@ Debug = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
+        'NAME': 'stackblog',
+        'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
@@ -20,12 +20,13 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
 ACCOUNT_UNIQUE_EMAIL = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = ACCOUNT_EMAIL_VERIFICATION
 
 # EMAIL SETTINGS
-EMAIL_HOST = ""
+EMAIL_HOST = "smtp.opennut.net"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = "no-reply"
+EMAIL_HOST_PASSWORD = "RRWReVTCbTBiDv6qJYE9rqkUEYYDNr"
 # Controls whether a secure connection is used.
 EMAIL_USE_TLS = True 
 

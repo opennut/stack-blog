@@ -2,10 +2,10 @@
 {% user_display user as user_display %}{% load i18n %}
 {% autoescape off %}
 {% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
-Hola de parte del equipo de StackBlog y OpenNut!
+Hola de parte del equipo de {{site_name}}!
 
-Recibiste este mensaje debido a que el usuario: {{ user_display }} en StackBlog a dado tu email pare registrar su cuenta!
+Recibiste este mensaje debido a que el usuario: {{ user_display }} en  {{site_name}} a dado tu email pare registrar su cuenta!
 
 Para confirmar que has sido tu y activar tu cuenta entra a: {{ activate_url }}
 {% endblocktrans %}{% endautoescape %}
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Gracias de parte de StackBlog! {% endblocktrans %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Gracias de parte de  {{site_domain}}! {% endblocktrans %}
