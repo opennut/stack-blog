@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block other_lib_head %}
+
+<link href="{% static "toopay-bootstrap-markdown/css/bootstrap-markdown.min.css" %}" rel="stylesheet">
+<script src="{% static "toopay-bootstrap-markdown/js/bootstrap-markdown.js" %}"></script>
+
+{% endblock %}
+
+{% block container %}
+{% if request.user.is_staff %}
+		<form action="" class="col-sm-12" method="post">
+			<h4>{% trans "¿Que deseas preguntar?" %}</h4>
+			<hr>
+			{% csrf_token %}
+			{{ form|crispy }}
+			<input type="submit" class="btn btn-primary" value="{% trans "Enviar Pregunta" %}">
+		</form>
+{% else %}
+		<h1>Error de permisos</h1>
+{% endif %}
+<script>
+	$("#id_description").markdown({autofocus:false,savable:false})
+</script>
+{% endblock %}

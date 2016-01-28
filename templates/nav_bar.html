@@ -60,6 +60,9 @@
 						<li><a href="{% url 'password_change_social' %}">{% trans "Crear Contraseña" %}</a></li>
 						{% endif %}
 						<li><a href="{% url 'profileedit' %}">{% trans "Editar Perfil" %}</a></li>
+						{% if request.user.is_staff %}
+						<li><a href="{% url 'tag_create' %}">{% trans "Crear Tag" %}</a></li>
+						{% endif %}
 						<li role="separator" class="divider"></li>
 						<li><a href="{% url 'logout' %}">{% trans "Salir" %}</a></li>
 					</ul>
